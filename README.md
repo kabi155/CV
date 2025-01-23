@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,10 +10,12 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background: url('photo.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
         }
         header {
-            background: #35424a;
+            background: rgba(53, 66, 74, 0.8);
             color: #ffffff;
             padding: 10px 20px;
             text-align: center;
@@ -20,7 +23,7 @@
         nav {
             display: flex;
             justify-content: center;
-            background: #35424a;
+            background: rgba(53, 66, 74, 0.8);
             padding: 10px 0;
         }
         nav a {
@@ -35,9 +38,27 @@
         section {
             padding: 20px;
             margin: 20px;
-            background: #ffffff;
             border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #profile {
+            background: rgba(252, 228, 236, 0.9);
+        }
+        #personal {
+            background: rgba(232, 245, 233, 0.9);
+        }
+        #education {
+            background: rgba(227, 242, 253, 0.9);
+        }
+        #training {
+            background: rgba(255, 243, 224, 0.9);
+        }
+        #experience {
+            background: rgba(237, 231, 246, 0.9);
+        }
+        #gallery {
+            background: rgba(249, 251, 231, 0.9);
         }
         h1, h2 {
             color: #35424a;
@@ -52,9 +73,21 @@
             border-radius: 8px;
             object-fit: cover;
         }
+        .welcome {
+            background: rgba(34, 34, 34, 0.8);
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
+
+<div class="welcome">
+    Welcome to Kabiraj's Portfolio Website
+</div>
 
 <header>
     <h1>Curriculum Vitae - Kabiraj Bhatt</h1>
@@ -77,8 +110,12 @@
 <section id="personal">
     <h2>Personal Information</h2>
     <p><strong>Full Name:</strong> Kabiraj Bhatt</p>
+    <p><strong>National Identity Number:</strong> 479-151-8581</p>
+    <p><strong>Citizenship Number:</strong> 75-01-70-07326</p>
     <p><strong>Contact No.:</strong> 9847546823, 9812753490</p>
     <p><strong>Date of Birth:</strong> 2053-12-04 (A.D 1997 Mar 17)</p>
+    <p><strong>Father's Name:</strong> Baldev Bhatt</p>
+    <p><strong>Mother's Name:</strong> Hira Bhatt</p>
     <p><strong>Marital Status:</strong> Unmarried</p>
     <p><strong>Contact Address:</strong> Shuklaphanta 01, Kanchanpur</p>
     <p><strong>Permanent Address:</strong> Shuklaphanta-01, Kanchanpur</p>
@@ -163,7 +200,7 @@
 <section id="gallery">
     <h2>Photo Gallery</h2>
     <div class="photo-gallery">
-        <img src="[WhatsApp Image 2025-01-12 at 06.30.34_860d6517.jpg]" alt="owner of website">
+        <img src="photo1.jpg" alt="Photo 1">
         <img src="photo2.jpg" alt="Photo 2">
         <img src="photo3.jpg" alt="Photo 3">
     </div>
@@ -171,4 +208,3 @@
 
 </body>
 </html>
-
