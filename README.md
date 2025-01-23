@@ -1,2 +1,2 @@
-# CV
-portfolio website
+# WELCOME 
+Kabi Raj Bhatt's portfolio website 
