@@ -89,7 +89,7 @@
 </div>
 
 <header>
-    <h1>Curriculum Vitae - Kabiraj Bhatt</h1>
+    <h1>Kabiraj Bhatt</h1>
 </header>
 
 <nav>
