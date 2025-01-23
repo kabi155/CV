@@ -9,7 +9,7 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background: url('photo.jpg') no-repeat center center fixed;
+            background: url('photo') no-repeat center center fixed;
             background-size: cover;
             color: #333;
         }
