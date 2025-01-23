@@ -195,7 +195,7 @@
 <section id="gallery">
     <h2>Photo Gallery</h2>
     <div class="photo-gallery">
-        <img src="photo1.jpg" alt="Photo 1">
+        <img src="����" alt="my photo">
         <img src="photo2.jpg" alt="Photo 2">
         <img src="photo3.jpg" alt="Photo 3">
     </div>
