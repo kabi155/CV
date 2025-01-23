@@ -163,7 +163,7 @@
 <section id="gallery">
     <h2>Photo Gallery</h2>
     <div class="photo-gallery">
-        <img src="[https://github.com/kabi155/CV/blob/main/WhatsApp%20Image%202025-01-12%20at%2006.30.34_860d6517.jpg]" alt="Photo 1">
+        <img src="[WhatsApp Image 2025-01-12 at 06.30.34_860d6517.jpg]" alt="owner of website">
         <img src="photo2.jpg" alt="Photo 2">
         <img src="photo3.jpg" alt="Photo 3">
     </div>
