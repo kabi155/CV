@@ -1,6 +1,3 @@
-# WELCOME 
-Kabi Raj Bhatt's portfolio website 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -80,12 +77,8 @@ Kabi Raj Bhatt's portfolio website
 <section id="personal">
     <h2>Personal Information</h2>
     <p><strong>Full Name:</strong> Kabiraj Bhatt</p>
-    <p><strong>National Identity Number:</strong> 479-151-8581</p>
-    <p><strong>Citizenship Number:</strong> 75-01-70-07326</p>
     <p><strong>Contact No.:</strong> 9847546823, 9812753490</p>
     <p><strong>Date of Birth:</strong> 2053-12-04 (A.D 1997 Mar 17)</p>
-    <p><strong>Father's Name:</strong> Baldev Bhatt</p>
-    <p><strong>Mother's Name:</strong> Hira Bhatt</p>
     <p><strong>Marital Status:</strong> Unmarried</p>
     <p><strong>Contact Address:</strong> Shuklaphanta 01, Kanchanpur</p>
     <p><strong>Permanent Address:</strong> Shuklaphanta-01, Kanchanpur</p>
