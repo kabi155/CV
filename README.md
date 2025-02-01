@@ -97,6 +97,8 @@
 
     function enterSite() {
         window.location.href = "krb wrb.html";}
+        function sign upSite() {
+        window.location.href = "kabiraj form.html";}
     </script>
 </body>
 </html>
