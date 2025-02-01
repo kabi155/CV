@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -97,11 +96,7 @@
         setInterval(updateTime, 1000);
 
     function enterSite() {
-        window.location.href = "krb wrb.html";
-    }
-</script>
-
-        }
+        window.location.href = "krb wrb.html";}
     </script>
 </body>
 </html>
