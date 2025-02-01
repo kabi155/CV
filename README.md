@@ -26,11 +26,11 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.7);
-            z-index: 1;
+            z-index: 1; /* Ensure this layer is below the content */
         }
         .content {
             position: relative;
-            z-index: 2;
+            z-index: 2; /* This ensures that content is on top of the overlay */
             padding: 20px;
             border-radius: 15px;
             background: rgba(255, 255, 255, 0.1);
@@ -90,6 +90,20 @@
         .gallery img:hover {
             transform: scale(1.1);
         }
+        .back-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.5em;
+            background: gold;
+            border: none;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        .back-btn:hover {
+            background: #ffcc00;
+        }
     </style>
 </head>
 <body>
@@ -113,7 +127,7 @@
             <a href="kabiraj (8).html"><img src="kabiraj (8).jpg" alt="Gallery Image 8"></a>
             <a href="kabiraj (9).html"><img src="kabiraj (9).jpg" alt="Gallery Image 9"></a>
             <a href="kabiraj (10).html"><img src="kabiraj (10).jpg" alt="Gallery Image 10"></a>
-            <a href="kabiraj (11).html"><img src="kabiraj (11).jpg" alt="Gallery Image 11"></a>
+                        <a href="kabiraj (11).html"><img src="kabiraj (11).jpg" alt="Gallery Image 11"></a>
             <a href="kabiraj (12).html"><img src="kabiraj (12).jpg" alt="Gallery Image 12"></a>
             <a href="kabiraj (13).html"><img src="kabiraj (13).jpg" alt="Gallery Image 13"></a>
             <a href="kabiraj (14).html"><img src="kabiraj (14).jpg" alt="Gallery Image 14"></a>
@@ -181,6 +195,8 @@
             <a href="kabiraj (76).html"><img src="kabiraj (76).jpg" alt="Gallery Image 76"></a>
             <a href="kabiraj (77).html"><img src="kabiraj (77).jpg" alt="Gallery Image 77"></a>
         </div>
+
+        <button class="back-btn" onclick="goBack()">Back to Home</button>
     </div>
 
     <script>
@@ -199,6 +215,10 @@
 
         function signupSite() {
             window.location.href = "kabiraj form.html";
+        }
+
+        function goBack() {
+            window.history.back();
         }
     </script>
 </body>
