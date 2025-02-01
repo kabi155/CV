@@ -83,6 +83,7 @@
         <div id="time"></div>
         <div class="slogan">एक सकारात्मक सोच तपाईको जीवन बदल्न सक्छ।</div>
         <button class="enter-btn" onclick="enterSite()">Enter</button>
+    </div><button class="log in-btn" onclick="signupsite()">Enter</button>
     </div>
 
     <script>
@@ -97,7 +98,7 @@
 
     function enterSite() {
         window.location.href = "krb wrb.html";}
-        function sign upSite() {
+    function signupSite() {
         window.location.href = "kabiraj form.html";}
     </script>
 </body>
