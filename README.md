@@ -26,11 +26,11 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.7);
-            z-index: 1;
+            z-index: 1; /* Ensure this layer is below the content */
         }
         .content {
             position: relative;
-            z-index: 2;
+            z-index: 2; /* This ensures that content is on top of the overlay */
             padding: 20px;
             border-radius: 15px;
             background: rgba(255, 255, 255, 0.1);
