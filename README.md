@@ -82,8 +82,7 @@
         <h2>Age: 27 years, 328 days</h2>
         <div id="time"></div>
         <div class="slogan">एक सकारात्मक सोच तपाईको जीवन बदल्न सक्छ।</div>
-        <button class="enter-btn" onclick="enterSite()">Enter</button>
-    </div><button class="log in-btn" onclick="signupsite()">Enter</button>
+        <button class="enter-btn" onclick="enterSite()">Enter</button></div><button class="log in-btn" onclick="signupsite()">signup</button>
     </div>
 
     <script>
