@@ -8,7 +8,7 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: url('photo.jpg') no-repeat center center fixed;
+            background: url('kabiraj(13).jpg') no-repeat center center fixed;
             background-size: cover;
             color: #fff;
             text-align: center;
@@ -103,7 +103,7 @@
 
         <!-- Photo Gallery -->
         <div class="gallery">
-        <a href="kabiraj(1).html"><img src="kabiraj(1).jpg" alt="Gallery Image 1"></a>
+<a href="kabiraj(1).html"><img src="kabiraj(1).jpg" alt="Gallery Image 1"></a>
         <a href="kabiraj(2).html"><img src="kabiraj(2).jpg" alt="Gallery Image 2"></a>
         <a href="kabiraj(3).html"><img src="kabiraj(3).jpg" alt="Gallery Image 3"></a>
         <a href="kabiraj(4).html"><img src="kabiraj(4).jpg" alt="Gallery Image 4"></a>
