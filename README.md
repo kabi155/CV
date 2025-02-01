@@ -1,205 +1,109 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kabiraj Bhatt</title>
+    <title>Kabiraj Bhatt - VIP</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: url('photo') no-repeat center center fixed;
+            background: url('photo.jpg') no-repeat center center fixed;
             background-size: cover;
-            color: #333;
-        }
-        header {
-            background: rgba(53, 66, 74, 0.8);
-            color: #ffffff;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background: rgba(53, 66, 74, 0.8);
-            padding: 10px 0;
-        }
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        section {
-            padding: 20px;
-            margin: 20px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        #profile {
-            background: rgba(252, 228, 236, 0.9);
-        }
-        #personal {
-            background: rgba(232, 245, 233, 0.9);
-        }
-        #education {
-            background: rgba(227, 242, 253, 0.9);
-        }
-        #training {
-            background: rgba(255, 243, 224, 0.9);
-        }
-        #experience {
-            background: rgba(237, 231, 246, 0.9);
-        }
-        #gallery {
-            background: rgba(249, 251, 231, 0.9);
-        }
-        h1, h2 {
-            color: #35424a;
-        }
-        .photo-gallery {
-            display: flex;
-            gap: 10px;
-        }
-        .photo-gallery img {
-            width: 150px;
-            height: 150px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-        .welcome {
-            background: rgba(34, 34, 34, 0.8);
             color: #fff;
-            padding: 15px;
             text-align: center;
-            font-size: 1.5em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        h2 {
+            font-size: 2em;
+            margin: 10px 0;
+        }
+        #time {
+            font-size: 1.8em;
             font-weight: bold;
+            color: gold;
+        }
+        .day-counter {
+            font-size: 1.5em;
+            color: #ffcc00;
+            margin-top: 10px;
+        }
+        .enter-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.5em;
+            background: gold;
+            border: none;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        .enter-btn:hover {
+            background: #ffcc00;
         }
     </style>
 </head>
 <body>
-
-<div class="welcome">
-    Welcome to Kabiraj's Portfolio Website
-</div>
-
-<header>
-    <h1>Kabiraj Bhatt</h1>
-</header>
-
-<nav>
-    <a href="#profile">Profile & Objectives</a>
-    <a href="#personal">Personal Information</a>
-    <a href="#education">Education</a>
-    <a href="#training">Training</a>
-    <a href="#experience">Experience</a>
-    <a href="#gallery">Photo Gallery</a>
-</nav>
-
-<section id="profile">
-    <h2>Profile & Objectives</h2>
-    <p>To augment my career in a Government sector where dynamism is the key concern and have enough scope to utilize my qualification along with the proper use of my vision, positive attitude, interpersonal relationship, and communication skills in order to be a part of the best practices and ideas.</p>
-</section>
-
-<section id="personal">
-    <h2>Personal Information</h2>
-    <p><strong>Full Name:</strong> Kabiraj Bhatt</p>
-    <p><strong>Contact No.:</strong> 9847546823, 9812753490</p>
-    <p><strong>Date of Birth:</strong> 2053-12-04 (A.D 1997 Mar 17)</p>
-    <p><strong>Marital Status:</strong> Unmarried</p>
-    <p><strong>Contact Address:</strong> Shuklaphanta 01, Kanchanpur</p>
-    <p><strong>Permanent Address:</strong> Shuklaphanta-01, Kanchanpur</p>
-    <p><strong>E-mail:</strong> <a href="mailto:bhattkabiraj255@gmail.com">bhattkabiraj255@gmail.com</a></p>
-    <p><strong>Religion:</strong> Hindu</p>
-    <p><strong>Caste:</strong> Brahmans (Mountain)</p>
-</section>
-
-<section id="education">
-    <h2>Education</h2>
-    <table border="1" cellspacing="0" cellpadding="10">
-        <tr>
-            <th>S. No.</th>
-            <th>Academic Qualification</th>
-            <th>College/School Name</th>
-            <th>Major Subject</th>
-            <th>Passed Year</th>
-            <th>Division</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>SLC</td>
-            <td>Baijnath H S School</td>
-            <td>Account & Economics</td>
-            <td>2069</td>
-            <td>First</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>+2 (Management)</td>
-            <td>Chandra Surya Bal H S School</td>
-            <td>Account & Marketing</td>
-            <td>2073</td>
-            <td>Second</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>BBS (TU)</td>
-            <td>Krishna Baijnath Multiple Campus</td>
-            <td>Finance</td>
-            <td>2080</td>
-            <td>Second</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>MBS (TU)</td>
-            <td>Janjyoti Multiple Campus</td>
-            <td>Finance</td>
-            <td>Running</td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Diploma in Civil Engineering</td>
-            <td>Shuklaphanta Polytechnic Institute</td>
-            <td>-</td>
-            <td>Running</td>
-            <td>-</td>
-        </tr>
-    </table>
-</section>
-
-<section id="training">
-    <h2>Training</h2>
-    <ul>
-        <li>Operator in Computer Training from CCT Computer Centre.</li>
-        <li>Basic Hard & Software course in Mobile Repairing from Raj Technical Institute, Azadpur, Delhi, India.</li>
-    </ul>
-</section>
-
-<section id="experience">
-    <h2>Experience</h2>
-    <ul>
-        <li>10 Months as a computer operator at Shuklaphanta 01 office (Data entry for Bhumihin Dalit, Bhumihin Sukumbasi, and Ababasthith Basobasi).</li>
-        <li>45 Days as a data collector at Shuklaphanta 01 office.</li>
-        <li>2 Months as a computer operator at Shuklaphanta 04 office (Data entry for Bhumihin Dalit, Bhumihin Sukumbasi, and Ababasthith Basobasi).</li>
-        <li>1 Month as a data collector for Rastriya Janganana Bibag (2078).</li>
-        <li>3 Years as a computer operator at Bipin Books & Stationers, Dhangadhi, Kailali, Nepal.</li>
-    </ul>
-</section>
-
-<section id="gallery">
-    <h2>Photo Gallery</h2>
-    <div class="photo-gallery">
-        <img src="photo" alt="my photo">
-        <img src="photo2.jpg" alt="Photo 2">
-        <img src="photo3.jpg" alt="Photo 3">
+    <div class="overlay"></div>
+    <div class="content">
+        <h1>Kabiraj Bhatt</h1>
+        <h2>Age: 30</h2>
+        <div id="time"></div>
+        <div class="day-counter" id="dayCounter"></div>
+        <button class="enter-btn" onclick="enterSite()">Enter</button>
     </div>
-</section>
 
+    <script>
+        function updateTime() {
+            let now = new Date();
+            let hours = now.getHours().toString().padStart(2, '0');
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById("time").innerText = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateTime, 1000);
+
+        function updateDayCounter() {
+            let startDate = new Date('2024-01-01'); // Example start date
+            let now = new Date();
+            let diffTime = now - startDate;
+            let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            document.getElementById("dayCounter").innerText = `Day: ${diffDays}`;
+        }
+        updateDayCounter();
+
+        function enterSite() {
+            window.location.href = "portfolio.html";
+        }
+    </script>
 </body>
 </html>
