@@ -1,4 +1,3 @@
-file123
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,11 +26,11 @@ file123
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.7);
-            z-index: 1; /* Ensure this layer is below the content */
+            z-index: 1;
         }
         .content {
             position: relative;
-            z-index: 2; /* This ensures that content is on top of the overlay */
+            z-index: 2;
             padding: 20px;
             border-radius: 15px;
             background: rgba(255, 255, 255, 0.1);
@@ -181,7 +180,6 @@ file123
             <a href="kabiraj (75).html"><img src="kabiraj (75).jpg" alt="Gallery Image 75"></a>
             <a href="kabiraj (76).html"><img src="kabiraj (76).jpg" alt="Gallery Image 76"></a>
             <a href="kabiraj (77).html"><img src="kabiraj (77).jpg" alt="Gallery Image 77"></a>
-        </div>
         </div>
     </div>
 
