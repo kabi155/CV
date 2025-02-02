@@ -1,68 +1,25 @@
-#include <iostream>
-    #include <fstream>
-    #include <string>
-    
-    using namespace std;
-    
-    struct User {
-        string fullName;
-        string dateOfBirth;
-        string fathersName;
-        string mothersName;
-        string relationshipStatus;
-        string citizenshipNumber;
-        string nationalID;
-        string passportPhotoPath; // Store the path to the image file
-    };
-    
-    void registerUser() {
-        User newUser;
-    
-        cout << "Enter Full Name: ";
-        getline(cin, newUser.fullName);
-    
-        cout << "Enter Date of Birth (YYYY-MM-DD): ";
-        getline(cin, newUser.dateOfBirth);
-    
-        cout << "Enter Father's Name: ";
-        getline(cin, newUser.fathersName);
-    
-        cout << "Enter Mother's Name: ";
-        getline(cin, newUser.mothersName);
-    
-        cout << "Enter Relationship Status: ";
-        getline(cin, newUser.relationshipStatus);
-    
-        cout << "Enter Citizenship Number: ";
-        getline(cin, newUser.citizenshipNumber);
-    
-        cout << "Enter National ID: ";
-        getline(cin, newUser.nationalID);
-    
-        cout << "Enter Passport Photo File Path: ";
-        getline(cin, newUser.passportPhotoPath);
-    
-        // Store user data in a file
-        ofstream outFile("user_data.txt", ios::app);
-        if (outFile.is_open()) {
-            outFile << newUser.fullName << endl;
-            outFile << newUser.dateOfBirth << endl;
-            outFile << newUser.fathersName << endl;
-            outFile << newUser.mothersName << endl;
-            outFile << newUser.relationshipStatus << endl;
-            outFile << newUser.citizenshipNumber << endl;
-            outFile << newUser.nationalID << endl;
-            outFile << newUser.passportPhotoPath << endl;
-            outFile << "------------------------------" << endl;
-            outFile.close();
-            cout << "Registration successful!" << endl;
-        } else {
-            cout << "Error opening file for writing." << endl;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f7;
         }
-    }
-    
-    int main() {
-        registerUser();
-        return 0;
-    }
-    
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            tex
