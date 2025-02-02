@@ -1,25 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Registration</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f4f7;
-        }
+document.getElementById('registrationForm').addEventListener('submit', function(event) {
+    event.preventDefault();  // Prevent the default form submission
 
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
+    const user = {
+        fullName: document.getElementById('fullName').value,
+        dateOfBirth: document.getElementById('dob').value,
+        fathersName: document.getElementById('fathersName').value,
+        mothersName: document.getElementById('mothersName').value,
+        relationshipStatus: document.getElementById('relationshipStatus').value,
+        citizenshipNumber: document.getElementById('citizenshipNumber').value,
+        nationalID: document.getElementById('nationalID').value,
+        passportPhotoPath: document.getElementById('passportPhoto').value,
+    };
 
-        h1 {
-            tex
+    fetch('http://localhost:3000/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data);  // Show the success message from the server
+        document.getElementById('registrationForm').reset();  // Reset form fields
+    })
+    .catch(error => console.error('Error:', error));
+});
