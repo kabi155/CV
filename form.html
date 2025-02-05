@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+        <form id="registrationForm">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="fathersName">Father's Name:</label>
+            <input type="text" id="fathersName" name="fathersName" required>
+
+            <label for="mothersName">Mother's Name:</label>
+            <input type="text" id="mothersName" name="mothersName" required>
+
+            <label for="relationshipStatus">Relationship Status:</label>
+            <select id="relationshipStatus" name="relationshipStatus" required>
+                <option value="single">Single</option>
+                <option value="married">Married</option>
+                <option value="divorced">Divorced</option>
+            </select>
+
+            <label for="citizenshipNumber">Citizenship Number:</label>
+            <input type="text" id="citizenshipNumber" name="citizenshipNumber" required>
+
+            <label for="nationalID">National ID:</label>
+            <input type="text" id="nationalID" name="nationalID" required>
+
+            <label for="passportPhoto">Passport Photo:</label>
+            <input type="file" id="passportPhoto" name="passportPhoto" accept="image/*" required>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
