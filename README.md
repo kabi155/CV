@@ -2,178 +2,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kabi Raj Bhatt - CV</title>
+    <title>Kabiraj Bhatt - VIP</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-        }
-        header {
-            background: #35424a;
-            color: #ffffff;
-            padding: 20px;
+            background: url('kabiraj (13).jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
             text-align: center;
-        }
-        .profile-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid white;
-        }
-        nav {
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            background: #35424a;
-            padding: 10px 0;
+            align-items: center;
+            height: 100vh;
+            position: relative;
         }
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 15px;
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        h2 {
+            font-size: 2em;
+            margin: 10px 0;
+        }
+        #age {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: gold;
+        }
+        #time {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: gold;
+        }
+        .slogan {
+            font-size: 1.5em;
+            color: #fff;
+            background-color: #FFCC00;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
             font-weight: bold;
         }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        section {
-            padding: 20px;
-            margin: 20px;
-            background: #ffffff;
+        .enter-btn, .signup-btn, .photo-btn, .back-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.5em;
+            background: gold;
+            border: none;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        h1, h2 {
-            color: #35424a;
+        .enter-btn:hover, .signup-btn:hover, .back-btn:hover {
+            background: #ffcc00;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .photo-btn {
+            background: green;
+            color: white;
         }
-        table th, table td {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
-        table th {
-            background-color: #35424a;
-            color: #fff;
+        .photo-btn:hover {
+            background: #4CAF50;
         }
     </style>
 </head>
 <body>
+    <div class="overlay"></div>
+    <div class="content">
+        <h1>Kabiraj Bhatt</h1>
+        <h2 id="age">Calculating...</h2>
+        <div id="time"></div>
+        <div class="slogan">एक सकारात्मक सोच तपाईको जीवन बदल्न सक्छ।</div>
+        <button class="enter-btn" onclick="enterSite()">Enter</button>
+        <button class="signup-btn" onclick="signupSite()">Sign Up</button>
+        <button class="photo-btn" onclick="goToPhotoPage()">View Photo Gallery</button>
+        <button class="back-btn" onclick="goBack()">Back to Home</button>
+    </div>
 
-<header>
-    <img src="photo" alt="Kabiraj Bhatt" class="profile-photo">
-    <h1>Kabiraj Bhatt</h1>
-    <p>Curriculum Vitae</p>
-</header>
+    <script>
+        function updateTime() {
+            let now = new Date();
+            let hours = now.getHours().toString().padStart(2, '0');
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById("time").innerText = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateTime, 1000);
 
-<nav>
-    <a href="#profile">Profile & Objectives</a>
-    <a href="#personal">Personal Information</a>
-    <a href="#education">Education</a>
-    <a href="#training">Training</a>
-    <a href="#experience">Experience</a>
-</nav>
+        function enterSite() {
+            window.location.href = "krb wrb.html";
+        }
 
-<section id="profile">
-    <h2>Profile & Objectives</h2>
-    <p>To augment my career in a Government sector where dynamism is the key concern and have enough scope to utilize my qualification along with the proper use of my vision, positive attitude, interpersonal relationship, and communication skills in order to be a part of the best practices and ideas.</p>
-</section>
+        function signupSite() {
+            window.location.href = "kabiraj form.html";
+        }
 
-<section id="personal">
-    <h2>Personal Information</h2>
-    <p><strong>Full Name:</strong> Kabi Raj Bhatt</p>
-    <p><strong>National Identity Number:</strong> 479-151-8581</p>
-    <p><strong>Citizenship Number:</strong> 75-01-70-07326</p>
-    <p><strong>Contact No.:</strong> 9847546823, 9812753490</p>
-    <p><strong>Date of Birth:</strong> 2053-12-04 (A.D 1997 Mar 17)</p>
-    <p><strong>Father's Name:</strong> Baldev Bhatt</p>
-    <p><strong>Mother's Name:</strong> Hira Bhatt</p>
-    <p><strong>Marital Status:</strong> Unmarried</p>
-    <p><strong>Contact Address:</strong> Shuklaphanta 01, Kanchanpur</p>
-    <p><strong>Permanent Address:</strong> Shuklaphanta-01, Kanchanpur</p>
-    <p><strong>E-mail:</strong> <a href="mailto:bhattkabiraj255@gmail.com">bhattkabiraj255@gmail.com</a></p>
-    <p><strong>Religion:</strong> Hindu</p>
-    <p><strong>Caste:</strong> Brahmans (Mountain)</p>
-</section>
+        function goToPhotoPage() {
+            window.location.href = "photos.html"; 
+        }
 
-<section id="education">
-    <h2>Education</h2>
-    <table>
-        <tr>
-            <th>S. No.</th>
-            <th>Academic Qualification</th>
-            <th>College/School Name</th>
-            <th>Major Subject</th>
-            <th>Passed Year</th>
-            <th>Division</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>SLC</td>
-            <td>Baijnath H S School</td>
-            <td>Account & Economics</td>
-            <td>2069</td>
-            <td>First</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>+2 (Management)</td>
-            <td>Chandra Surya Bal H S School</td>
-            <td>Account & Marketing</td>
-            <td>2073</td>
-            <td>Second</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>BBS (TU)</td>
-            <td>Krishna Baijnath Multiple Campus</td>
-            <td>Finance</td>
-            <td>2080</td>
-            <td>Second</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>MBS (TU)</td>
-            <td>Janjyoti Multiple Campus</td>
-            <td>Finance</td>
-            <td>Running</td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Diploma in Civil Engineering</td>
-            <td>Shuklaphanta Polytechnic Institute</td>
-            <td>-</td>
-            <td>Running</td>
-            <td>-</td>
-        </tr>
-    </table>
-</section>
+        function goBack() {
+            window.history.back();
+        }
 
-<section id="training">
-    <h2>Training</h2>
-    <ul>
-        <li>Operator in Computer Training from CCT Computer Centre.</li>
-        <li>Basic Hard & Software course in Mobile Repairing from Raj Technical Institute, Azadpur, Delhi, India.</li>
-    </ul>
-</section>
+        function calculateAge(birthDate) {
+            let now = new Date();
+            let birth = new Date(birthDate);
 
-<section id="experience">
-    <h2>Experience</h2>
-    <ul>
-        <li>10 Months as a computer operator at Shuklaphanta 01 office (Data entry for Bhumihin Dalit, Bhumihin Sukumbasi, and Ababasthith Basobasi).</li>
-        <li>45 Days as a data collector at Shuklaphanta 01 office.</li>
-        <li>2 Months as a computer operator at Shuklaphanta 04 office (Data entry for Bhumihin Dalit, Bhumihin Sukumbasi, and Ababasthith Basobasi).</li>
-        <li>1 Month as a data collector for Rastriya Janganana Bibag (2078).</li>
-        <li>3 Years as a computer operator at Bipin Books & Stationers, Dhangadhi, Kailali, Nepal (2073).</li>
-    </ul>
-</section>
+            let years = now.getFullYear() - birth.getFullYear();
+            let months = now.getMonth() - birth.getMonth();
+            let days = now.getDate() - birth.getDate();
+            let hours = now.getHours() - birth.getHours();
+            let minutes = now.getMinutes() - birth.getMinutes();
+            let seconds = now.getSeconds() - birth.getSeconds();
 
+            if (seconds < 0) {
+                seconds += 60;
+                minutes -= 1;
+            }
+            if (minutes < 0) {
+                minutes += 60;
+                hours -= 1;
+            }
+            if (hours < 0) {
+                hours += 24;
+                days -= 1;
+            }
+            if (days < 0) {
+                months -= 1;
+                let lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+            if (months < 0) {
+                months += 12;
+                years -= 1;
+            }
+
+            document.getElementById("age").innerText = `Age: ${years} years, ${months} months, ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+        }
+
+        setInterval(() => calculateAge("1997-03-17T04:00:00"), 1000);
+    </script>
 </body>
 </html>
