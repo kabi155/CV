@@ -90,7 +90,7 @@
 <body>
     <div class="overlay"></div>
     <div class="content">
-        <h1>Kabiraj Bhatt</h1>
+        <h1>KABI RAJ BHATT</h1>
         <h2 id="age">Calculating...</h2>
         <div id="time"></div>
         <div class="slogan">एक सकारात्मक सोच तपाईको जीवन बदल्न सक्छ।</div>
