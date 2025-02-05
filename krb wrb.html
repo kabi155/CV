@@ -17,6 +17,13 @@
             padding: 10px 20px;
             text-align: center;
         }
+        header .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            object-fit: cover;
+        }
         nav {
             display: flex;
             justify-content: center;
@@ -42,22 +49,27 @@
         h1, h2 {
             color: #35424a;
         }
-        .photo-gallery {
-            display: flex;
-            gap: 10px;
+        table {
+            width: 100%;
+            border-collapse: collapse;
         }
-        .photo-gallery img {
-            width: 150px;
-            height: 150px;
-            border-radius: 8px;
-            object-fit: cover;
+        table th, table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        table th {
+            background-color: #35424a;
+            color: #fff;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Curriculum Vitae - Kabiraj Bhatt</h1>
+    <img src="photo.jpg" alt="Kabiraj Bhatt" class="profile-photo">
+    <h1>Kabiraj Bhatt</h1>
+    <p>Curriculum Vitae</p>
 </header>
 
 <nav>
@@ -66,7 +78,6 @@
     <a href="#education">Education</a>
     <a href="#training">Training</a>
     <a href="#experience">Experience</a>
-    <a href="#gallery">Photo Gallery</a>
 </nav>
 
 <section id="profile">
@@ -93,7 +104,7 @@
 
 <section id="education">
     <h2>Education</h2>
-    <table border="1" cellspacing="0" cellpadding="10">
+    <table>
         <tr>
             <th>S. No.</th>
             <th>Academic Qualification</th>
@@ -162,15 +173,6 @@
         <li>1 Month as a data collector for Rastriya Janganana Bibag (2078).</li>
         <li>3 Years as a computer operator at Bipin Books & Stationers, Dhangadhi, Kailali, Nepal.</li>
     </ul>
-</section>
-
-<section id="gallery">
-    <h2>Photo Gallery</h2>
-    <div class="photo-gallery">
-        <img src="photo1.jpg" alt="Photo">
-        <img src="photo2.jpg" alt="Photo">
-        <img src="photo3.jpg" alt="Photo">
-    </div>
 </section>
 
 </body>
