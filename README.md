@@ -115,7 +115,7 @@
         }
 
         function signupSite() {
-            window.location.href = "kabiraj form.html";
+            window.location.href = "kabiraj form.html"; // Link to the registration form
         }
 
         function goToPhotoPage() {
