@@ -1,28 +1,74 @@
-document.getElementById('registrationForm').addEventListener('submit', function(event) {
-    event.preventDefault();  // Prevent the default form submission
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+        <form id="registrationForm">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
 
-    const user = {
-        fullName: document.getElementById('fullName').value,
-        dateOfBirth: document.getElementById('dob').value,
-        fathersName: document.getElementById('fathersName').value,
-        mothersName: document.getElementById('mothersName').value,
-        relationshipStatus: document.getElementById('relationshipStatus').value,
-        citizenshipNumber: document.getElementById('citizenshipNumber').value,
-        nationalID: document.getElementById('nationalID').value,
-        passportPhotoPath: document.getElementById('passportPhoto').value,
-    };
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
 
-    fetch('http://localhost:3000/register', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(user)
-    })
-    .then(response => response.text())
-    .then(data => {
-        alert(data);  // Show the success message from the server
-        document.getElementById('registrationForm').reset();  // Reset form fields
-    })
-    .catch(error => console.error('Error:', error));
-});
+            <label for="fathersName">Father's Name:</label>
+            <input type="text" id="fathersName" name="fathersName" required>
+
+            <label for="mothersName">Mother's Name:</label>
+            <input type="text" id="mothersName" name="mothersName" required>
+
+            <label for="relationshipStatus">Relationship Status:</label>
+            <select id="relationshipStatus" name="relationshipStatus" required>
+                <option value="single">Single</option>
+                <option value="married">Married</option>
+                <option value="divorced">Divorced</option>
+            </select>
+
+            <label for="citizenshipNumber">Citizenship Number:</label>
+            <input type="text" id="citizenshipNumber" name="citizenshipNumber" required>
+
+            <label for="nationalID">National ID:</label>
+            <input type="text" id="nationalID" name="nationalID" required>
+
+            <label for="passportPhoto">Passport Photo:</label>
+            <input type="file" id="passportPhoto" name="passportPhoto" accept="image/*" required>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent the default form submission
+
+            const formData = new FormData();
+            formData.append('fullName', document.getElementById('fullName').value);
+            formData.append('dateOfBirth', document.getElementById('dob').value);
+            formData.append('fathersName', document.getElementById('fathersName').value);
+            formData.append('mothersName', document.getElementById('mothersName').value);
+            formData.append('relationshipStatus', document.getElementById('relationshipStatus').value);
+            formData.append('citizenshipNumber', document.getElementById('citizenshipNumber').value);
+            formData.append('nationalID', document.getElementById('nationalID').value);
+            formData.append('passportPhoto', document.getElementById('passportPhoto').files[0]);
+
+            fetch('http://localhost:3000/register', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);  // Show the success message from the server
+                document.getElementById('registrationForm').reset();  // Reset form fields
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Registration failed. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html>
