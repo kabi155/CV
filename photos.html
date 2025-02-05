@@ -36,7 +36,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.8);
+      background: black; /* solid black background */
       justify-content: center;
       align-items: center;
       z-index: 1000;
@@ -88,6 +88,8 @@
     <span class="close-btn" onclick="closeOverlay()">&times;</span>
     <img id="full-image" src="" alt="Full Size Image" />
     <div class="controls">
+      <!-- Back button for the previous photo -->
+      <button id="back-btn" onclick="prevPhoto()">Back</button>
       <!-- Next button for the next photo -->
       <button id="next-btn" onclick="nextPhoto()">Next</button>
       <!-- Download link for saving the current photo -->
@@ -138,8 +140,15 @@
     function nextPhoto() {
       // Move to the next photo (wrap around to 1 when reaching the end)
       currentIndex = currentIndex < totalPhotos ? currentIndex + 1 : 1;
-      const newSrc = encodeURI(`kabiraj (${currentIndex}).jpg`);
-      fullImage.src = newSrc;
+      fullImage.src = encodeURI(`kabiraj (${currentIndex}).jpg`);
+      updateDownloadLink();
+    }
+
+    // Show the previous photo in the overlay
+    function prevPhoto() {
+      // Move to the previous photo (wrap around to the last when at the first)
+      currentIndex = currentIndex > 1 ? currentIndex - 1 : totalPhotos;
+      fullImage.src = encodeURI(`kabiraj (${currentIndex}).jpg`);
       updateDownloadLink();
     }
   </script>
