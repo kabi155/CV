@@ -1,27 +1,49 @@
-document.getElementById('registrationForm').addEventListener('submit', function(event) {
-    event.preventDefault();  // Prevent the default form submission
+document.getElementById('signup-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('fullName', document.getElementById('fullName').value);
-    formData.append('dateOfBirth', document.getElementById('dob').value);
-    formData.append('fathersName', document.getElementById('fathersName').value);
-    formData.append('mothersName', document.getElementById('mothersName').value);
-    formData.append('relationshipStatus', document.getElementById('relationshipStatus').value);
-    formData.append('citizenshipNumber', document.getElementById('citizenshipNumber').value);
-    formData.append('nationalID', document.getElementById('nationalID').value);
-    formData.append('passportPhoto', document.getElementById('passportPhoto').files[0]);
+  // Collect form data
+  const formData = {
+    firstName: document.getElementById('firstName').value,
+    middleName: document.getElementById('middleName').value,
+    lastName: document.getElementById('lastName').value,
+    gender: document.getElementById('gender').value,
+    dob: document.getElementById('dob').value,
+    address: {
+      country: document.getElementById('country').value,
+      state: document.getElementById('state').value,
+      district: document.getElementById('district').value,
+    },
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value,
+    password: document.getElementById('password').value,
+    confirmPassword: document.getElementById('confirmPassword').value,
+  };
 
-    fetch('http://localhost:3000/register', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert(data.message);  // Show the success message from the server
-        document.getElementById('registrationForm').reset();  // Reset form fields
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Registration failed. Please try again.');
+  // Validate passwords
+  if (formData.password !== formData.confirmPassword) {
+    alert('Passwords do not match!');
+    return;
+  }
+
+  // Send data to backend
+  try {
+    const response = await fetch('/api/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
     });
+
+    const data = await response.json();
+    if (response.ok) {
+      alert('Registration successful!');
+      window.location.href = '/login'; // Redirect to login page
+    } else {
+      alert(`Registration failed: ${data.message}`);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('An error occurred during registration.');
+  }
 });
