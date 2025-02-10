@@ -83,7 +83,17 @@
     <script>
         document.getElementById('signup-form').addEventListener('submit', (e) => {
             e.preventDefault();
+            const user = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value
+            };
+
+            // Save user data to localStorage
+            localStorage.setItem('user', JSON.stringify(user));
             alert('Signup successful!');
+            window.location.href = "kabiraj login.html"; // Redirect to login page
         });
     </script>
 </body>
