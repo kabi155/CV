@@ -1,11 +1,9 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KABI RAJ BHATT - VIP</title>
     <style>
-        /* CSS styles for the website */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
