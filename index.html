@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... (keep existing head content) ... -->
+    <style>
+        /* Add this new CSS for the login button */
+        .login-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.5em;
+            background: #4285f4; /* Blue color for login */
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        .login-btn:hover {
+            background: #357abd;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="content">
+        <h1>KABI RAJ BHATT</h1>
+        <h2 id="age">Calculating...</h2>
+        <div id="time"></div>
+        <div class="slogan">एक सकारात्मक सोच तपाईको जीवन बदल्न सक्छ।</div>
+        <button class="enter-btn" onclick="enterSite()">Enter</button>
+        <button class="signup-btn" onclick="signupSite()">Sign Up</button>
+        <button class="login-btn" onclick="loginSite()">Login</button> <!-- New Login Button -->
+        <button class="photo-btn" onclick="goToPhotoPage()">View Photo Gallery</button>
+        <button class="back-btn" onclick="goBack()">Back to Home</button>
+    </div>
+
+    <script>
+        // ... (keep existing JavaScript code) ...
+
+        // Add this function for login redirection
+        function loginSite() {
+            window.location.href = "kabiraj login.html"; // Link to login page
+        }
+    </script>
+</body>
+</html>
