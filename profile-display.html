@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Display</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('kabiraj (13).jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        .profile-display-container {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .profile-display-container h1 {
+            font-size: 2em;
+            margin-bottom: 1.5rem;
+            color: gold;
+            text-align: center;
+        }
+
+        .profile-details {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .profile-details img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="profile-display-container">
+        <h1>Your Profile</h1>
+        <div class="profile-details" id="profile-details">
+            <!-- Profile details will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        // Retrieve profile data from localStorage
+        const profile = JSON.parse(localStorage.getItem('profile'));
+
+        if (profile) {
+            const profileDetails = document.getElementById('profile-details');
+            profileDetails.innerHTML = `
+                <p><strong>Name:</strong> ${profile.firstName} ${profile.middleName} ${profile.lastName}</p>
+                <p><strong>Father's Name:</strong> ${profile.fatherName}</p>
+                <p><strong>Mother's Name:</strong> ${profile.motherName}</p>
+                <p><strong>Father's Age:</strong> ${profile.fatherAge}</p>
+                <p><strong>Mother's Age:</strong> ${profile.motherAge}</p>
+                <p><strong>Address:</strong> ${profile.address}</p>
+                <p><strong>Qualification:</strong> ${profile.qualification}</p>
+                <p><strong>Date of Birth:</strong> ${profile.dob}</p>
+                <p><strong>Relationship Status:</strong> ${profile.relationship}</p>
+                <p><strong>Gender:</strong> ${profile.gender}</p>
+                ${profile.photo ? `<img src="${profile.photo}" alt="Profile Photo">` : ''}
+            `;
+        } else {
+            alert('No profile data found!');
+            window.location.href = "profile-form.html"; // Redirect to profile form
+        }
+    </script>
+</body>
+</html>
