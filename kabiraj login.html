@@ -4,23 +4,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-        /* Add your CSS styles here */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('kabiraj (13).jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        .login-container {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .login-container h1 {
+            font-size: 2em;
+            margin-bottom: 1.5rem;
+            color: gold;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: gold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 0.8rem;
+            background: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .login-button:hover {
+            background: #357abd;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .signup-link a {
+            color: gold;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+    <div class="overlay"></div>
     <div class="login-container">
         <h1>Login</h1>
         <form id="login-form">
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="login-email">Email</label>
                 <input type="email" id="login-email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="login-password">Password</label>
                 <input type="password" id="login-password" name="password" required>
             </div>
             <button type="submit" class="login-button">Login</button>
         </form>
+        <div class="signup-link">
+            Don't have an account? <a href="kabiraj form.html">Sign Up</a>
+        </div>
     </div>
 
     <script>
@@ -29,7 +125,7 @@
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
 
-            // Retrieve stored user data from localStorage
+            // Retrieve stored user data
             const storedUser = JSON.parse(localStorage.getItem('user'));
 
             if (storedUser && storedUser.email === email && storedUser.password === password) {
