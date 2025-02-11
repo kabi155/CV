@@ -4,25 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <style>
-        /* Add your CSS styles here */
-    </style>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
     <div class="login-container">
-        <h1>Login</h1>
-        <form id="login-form">
-            <div class="form-group">
-                <label for="email">Email (Gmail)</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" class="login-button">Login</button>
-        </form>
-        <p>Don't have an account? <a href="kabiraj form.html">Sign Up</a></p>
+        <div class="login-box">
+            <h1>Welcome Back!</h1>
+            <form id="login-form">
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="login-button">Login</button>
+            </form>
+            <p class="signup-link">Don't have an account? <a href="kabiraj form.html">Sign Up</a></p>
+        </div>
     </div>
 
     <script>
@@ -31,7 +29,7 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            // Retrieve users and profiles
+            // Retrieve users and profiles from localStorage
             const users = JSON.parse(localStorage.getItem('users')) || [];
             const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
 
@@ -44,12 +42,8 @@
 
             // Check if profile exists
             const profile = profiles.find(p => p.email === email);
-            if (profile) {
-                localStorage.setItem('currentUser', email);
-                window.location.href = "profile-display.html";
-            } else {
-                window.location.href = "profile-form.html";
-            }
+            localStorage.setItem('currentUser', email);
+            window.location.href = profile ? "profile-display.html" : "profile-form.html";
         });
     </script>
 </body>
