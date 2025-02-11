@@ -3,33 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Form</title>
-    <style>
-        /* Add your CSS styles here */
-    </style>
+    <title>Create Profile</title>
+    <link rel="stylesheet" href="profile-form.css">
 </head>
 <body>
     <div class="profile-form-container">
-        <h1>Create Your Profile</h1>
-        <form id="profile-form">
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" required>
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" required>
-            </div>
-            <div class="form-group">
-                <label for="dob">Date of Birth</label>
-                <input type="date" id="dob" required>
-            </div>
-            <div class="form-group">
-                <label for="address">Address</label>
-                <textarea id="address" required></textarea>
-            </div>
-            <button type="submit" class="submit-button">Submit</button>
-        </form>
+        <div class="profile-form-box">
+            <h1>Create Your Profile</h1>
+            <form id="profile-form">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="date" id="dob" placeholder="Date of Birth" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="bio" placeholder="Bio (e.g., Student, Developer)" required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="file" id="profilePhoto" accept="image/*" required>
+                </div>
+                <button type="submit" class="submit-button">Create Profile</button>
+            </form>
+        </div>
     </div>
 
     <script>
@@ -41,7 +40,8 @@
                 firstName: document.getElementById('firstName').value,
                 lastName: document.getElementById('lastName').value,
                 dob: document.getElementById('dob').value,
-                address: document.getElementById('address').value
+                bio: document.getElementById('bio').value,
+                profilePhoto: URL.createObjectURL(document.getElementById('profilePhoto').files[0])
             };
 
             // Save profile
