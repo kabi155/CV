@@ -40,25 +40,34 @@
                 <h3>About Me</h3>
                 <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
                 <p><strong>Email:</strong> <span id="email"></span></p>
-                <p><strong>Father's Name:</strong> <span id="fatherName"></span></p>
-                <p><strong>Mother's Name:</strong> <span id="motherName"></span></p>
-                <p><strong>Address:</strong> <span id="address"></span></p>
+                <!-- Conditional Fields -->
+                <div id="conditionalFields">
+                    <p><strong>Father's Name:</strong> <span id="fatherName"></span></p>
+                    <p><strong>Mother's Name:</strong> <span id="motherName"></span></p>
+                    <p><strong>Grandfather's Name:</strong> <span id="grandfatherName"></span></p>
+                    <p><strong>Address:</strong> <span id="address"></span></p>
+                </div>
             </div>
         </div>
 
         <!-- Action Buttons -->
         <div class="action-buttons">
+            <button onclick="showEditModal()">✏️ Edit Profile</button>
+        </div>
+
+        <!-- Bottom Buttons -->
+        <div class="bottom-buttons">
             <button onclick="showThoughtModal()">💭 Thought</button>
             <button onclick="showRelatives()">👪 Relatives</button>
-            <button onclick="showConversations()">💬 Chat</button>
-            <button onclick="showEditModal()">✏️ Edit</button>
-            <button onclick="showPhotoGallery()">📷 Photos</button>
-            <button onclick="verifyEmail()" id="verifyButton">📧 Verify Email</button>
+            <button onclick="showChat()">💬 Chat</button>
+            <button onclick="verifyEmail()">📧 Verify Email</button>
+            <button onclick="showPhotos()">📷 Photos</button>
         </div>
 
         <!-- Thought Modal -->
         <div id="thoughtModal" class="modal">
             <div class="modal-content">
+                <h2>Post a Thought</h2>
                 <textarea placeholder="What's on your mind?"></textarea>
                 <input type="file" accept="image/*">
                 <select id="privacy">
@@ -67,32 +76,22 @@
                     <option value="specific">👤 Specific</option>
                 </select>
                 <button onclick="postThought()">Post</button>
-            </div>
-        </div>
-
-        <!-- Edit Profile Modal -->
-        <div id="editModal" class="modal">
-            <div class="modal-content">
-                <input type="text" id="editFatherName" placeholder="Father's Name">
-                <input type="text" id="editMotherName" placeholder="Mother's Name">
-                <input type="text" id="editAddress" placeholder="Address">
-                <button onclick="saveDetails()">Save</button>
+                <button onclick="closeThoughtModal()">Cancel</button>
             </div>
         </div>
 
         <!-- Relatives List -->
         <div id="relativesList" class="hidden">
             <h3>Your Relatives</h3>
-            <div class="relative-list"></div>
+            <div class="relatives-list"></div>
         </div>
 
         <!-- Chat Interface -->
         <div id="chatInterface" class="hidden">
-            <div class="chat-container">
-                <div class="chat-messages"></div>
-                <input type="text" class="message-input">
-                <button onclick="sendMessage()">Send</button>
-            </div>
+            <h3>Chat with Relatives</h3>
+            <div class="chat-messages"></div>
+            <input type="text" class="message-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
         </div>
 
         <!-- Photos Gallery -->
@@ -100,11 +99,26 @@
             <h3>Your Photos</h3>
             <div class="photo-grid"></div>
         </div>
+
+        <!-- Edit Profile Modal -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <h2>Edit Profile</h2>
+                <input type="text" id="editFirstName" placeholder="First Name">
+                <input type="text" id="editLastName" placeholder="Last Name">
+                <textarea id="editBio" placeholder="Bio"></textarea>
+                <input type="text" id="editProfilePhoto" placeholder="Profile Photo URL">
+                <div id="editConditionalFields">
+                    <input type="text" id="editFatherName" placeholder="Father's Name">
+                    <input type="text" id="editMotherName" placeholder="Mother's Name">
+                    <input type="text" id="editGrandfatherName" placeholder="Grandfather's Name">
+                    <input type="text" id="editAddress" placeholder="Address">
+                </div>
+                <button onclick="saveDetails()">Save Changes</button>
+                <button onclick="closeEditModal()">Cancel</button>
+            </div>
+        </div>
     </div>
-    // Logout Function
-    function logout() {
-        localStorage.removeItem('currentUser');
-        window.location.href = "kabiraj login.html";
 
     <script src="profile-script.js"></script>
 </body>
