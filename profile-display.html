@@ -11,6 +11,11 @@
     <nav class="navbar">
         <div class="nav-left">
             <h1>Social Profile</h1>
+            <!-- Search Button -->
+            <div class="search-container">
+                <input type="text" placeholder="Search members..." id="searchInput">
+                <button onclick="searchMembers()">🔍</button>
+            </div>
         </div>
         <div class="nav-right">
             <button onclick="logout()">Logout</button>
@@ -35,39 +40,72 @@
                 <h3>About Me</h3>
                 <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
                 <p><strong>Email:</strong> <span id="email"></span></p>
+                <p><strong>Father's Name:</strong> <span id="fatherName"></span></p>
+                <p><strong>Mother's Name:</strong> <span id="motherName"></span></p>
+                <p><strong>Address:</strong> <span id="address"></span></p>
             </div>
         </div>
 
-        <!-- Posts Section -->
-        <div class="posts-feed">
-            <div class="post">
-                <p>Welcome to your profile! Start sharing your updates.</p>
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button onclick="showThoughtModal()">💭 Thought</button>
+            <button onclick="showRelatives()">👪 Relatives</button>
+            <button onclick="showConversations()">💬 Chat</button>
+            <button onclick="showEditModal()">✏️ Edit</button>
+            <button onclick="showPhotoGallery()">📷 Photos</button>
+            <button onclick="verifyEmail()" id="verifyButton">📧 Verify Email</button>
+        </div>
+
+        <!-- Thought Modal -->
+        <div id="thoughtModal" class="modal">
+            <div class="modal-content">
+                <textarea placeholder="What's on your mind?"></textarea>
+                <input type="file" accept="image/*">
+                <select id="privacy">
+                    <option value="public">🌍 Public</option>
+                    <option value="friends">👥 Friends</option>
+                    <option value="specific">👤 Specific</option>
+                </select>
+                <button onclick="postThought()">Post</button>
             </div>
+        </div>
+
+        <!-- Edit Profile Modal -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <input type="text" id="editFatherName" placeholder="Father's Name">
+                <input type="text" id="editMotherName" placeholder="Mother's Name">
+                <input type="text" id="editAddress" placeholder="Address">
+                <button onclick="saveDetails()">Save</button>
+            </div>
+        </div>
+
+        <!-- Relatives List -->
+        <div id="relativesList" class="hidden">
+            <h3>Your Relatives</h3>
+            <div class="relative-list"></div>
+        </div>
+
+        <!-- Chat Interface -->
+        <div id="chatInterface" class="hidden">
+            <div class="chat-container">
+                <div class="chat-messages"></div>
+                <input type="text" class="message-input">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+
+        <!-- Photos Gallery -->
+        <div id="photoGallery" class="hidden">
+            <h3>Your Photos</h3>
+            <div class="photo-grid"></div>
         </div>
     </div>
+    // Logout Function
+    function logout() {
+        localStorage.removeItem('currentUser');
+        window.location.href = "kabiraj login.html";
 
-    <script>
-        // Load Profile Data
-        const email = localStorage.getItem('currentUser');
-        const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
-        const profile = profiles.find(p => p.email === email);
-
-        if (profile) {
-            document.getElementById('profile-photo').src = profile.profilePhoto;
-            document.getElementById('full-name').textContent = `${profile.firstName} ${profile.lastName}`;
-            document.getElementById('bio-text').textContent = profile.bio;
-            document.getElementById('dob').textContent = profile.dob;
-            document.getElementById('email').textContent = profile.email;
-        } else {
-            alert('Profile not found!');
-            window.location.href = "profile-form.html";
-        }
-
-        // Logout Function
-        function logout() {
-            localStorage.removeItem('currentUser');
-            window.location.href = "kabiraj login.html";
-        }
-    </script>
+    <script src="profile-script.js"></script>
 </body>
 </html>
