@@ -24,6 +24,7 @@
                     <textarea id="bio" placeholder="Bio (e.g., Student, Developer)" required></textarea>
                 </div>
                 <div class="form-group">
+                    <label for="profilePhoto">Upload Profile Photo</label>
                     <input type="file" id="profilePhoto" accept="image/*" required>
                 </div>
                 <button type="submit" class="submit-button">Create Profile</button>
@@ -34,21 +35,39 @@
     <script>
         document.getElementById('profile-form').addEventListener('submit', (e) => {
             e.preventDefault();
+            
             const email = localStorage.getItem('currentUser');
-            const profile = {
-                email,
-                firstName: document.getElementById('firstName').value,
-                lastName: document.getElementById('lastName').value,
-                dob: document.getElementById('dob').value,
-                bio: document.getElementById('bio').value,
-                profilePhoto: URL.createObjectURL(document.getElementById('profilePhoto').files[0])
-            };
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const dob = document.getElementById('dob').value;
+            const bio = document.getElementById('bio').value;
+            const profilePhoto = document.getElementById('profilePhoto').files[0];
 
-            // Save profile
-            const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
-            profiles.push(profile);
-            localStorage.setItem('profiles', JSON.stringify(profiles));
-            window.location.href = "profile-display.html";
+            if (!profilePhoto) {
+                alert('Please upload a profile photo!');
+                return;
+            }
+
+            // Convert image to Base64
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const profile = {
+                    email,
+                    firstName,
+                    lastName,
+                    dob,
+                    bio,
+                    profilePhoto: e.target.result
+                };
+
+                // Save to localStorage
+                const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
+                profiles.push(profile);
+                localStorage.setItem('profiles', JSON.stringify(profiles));
+                
+                window.location.href = "profile-display.html";
+            };
+            reader.readAsDataURL(profilePhoto);
         });
     </script>
 </body>
