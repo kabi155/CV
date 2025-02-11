@@ -4,25 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <style>
-        /* Add your CSS styles here */
-    </style>
+    <link rel="stylesheet" href="signup.css">
 </head>
 <body>
     <div class="signup-container">
-        <h1>Sign Up</h1>
-        <form id="signup-form">
-            <div class="form-group">
-                <label for="email">Email (Gmail)</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" class="signup-button">Sign Up</button>
-        </form>
-        <p>Already have an account? <a href="kabiraj login.html">Login</a></p>
+        <div class="signup-box">
+            <h1>Join Us</h1>
+            <form id="signup-form">
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="signup-button">Sign Up</button>
+            </form>
+            <p class="login-link">Already have an account? <a href="kabiraj login.html">Login</a></p>
+        </div>
     </div>
 
     <script>
@@ -31,16 +29,14 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            // Retrieve existing users or initialize an empty array
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            
             // Check if user already exists
+            const users = JSON.parse(localStorage.getItem('users')) || [];
             if (users.some(user => user.email === email)) {
                 alert('User already exists!');
                 return;
             }
 
-            // Add new user
+            // Save user
             users.push({ email, password });
             localStorage.setItem('users', JSON.stringify(users));
             alert('Signup successful!');
