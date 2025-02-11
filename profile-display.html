@@ -15,7 +15,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             position: relative;
         }
 
@@ -38,35 +38,65 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             width: 90%;
-            max-width: 600px;
+            max-width: 800px;
+            text-align: center;
         }
 
         .profile-display-container h1 {
-            font-size: 2em;
+            font-size: 2.5em;
             margin-bottom: 1.5rem;
             color: gold;
-            text-align: center;
         }
 
         .profile-details {
             font-size: 1.1rem;
-            line-height: 1.6;
+            text-align: left;
+            display: inline-block;
         }
 
         .profile-details img {
-            max-width: 100%;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 3px solid gold;
+        }
+
+        .profile-details p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .profile-details strong {
+            color: gold;
+        }
+
+        .logout-button {
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background: #ff4d4d;
+            color: white;
+            border: none;
             border-radius: 8px;
-            margin-top: 1rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background: #cc0000;
         }
     </style>
 </head>
 <body>
     <div class="overlay"></div>
     <div class="profile-display-container">
-        <h1>Your Profile</h1>
+        <h1>Welcome to Your VIP Home Page</h1>
         <div class="profile-details" id="profile-details">
             <!-- Profile details will be dynamically inserted here -->
         </div>
+        <button class="logout-button" onclick="logout()">Logout</button>
     </div>
 
     <script>
@@ -76,6 +106,7 @@
         if (profile) {
             const profileDetails = document.getElementById('profile-details');
             profileDetails.innerHTML = `
+                ${profile.photo ? `<img src="${profile.photo}" alt="Profile Photo">` : ''}
                 <p><strong>Name:</strong> ${profile.firstName} ${profile.middleName} ${profile.lastName}</p>
                 <p><strong>Father's Name:</strong> ${profile.fatherName}</p>
                 <p><strong>Mother's Name:</strong> ${profile.motherName}</p>
@@ -86,11 +117,17 @@
                 <p><strong>Date of Birth:</strong> ${profile.dob}</p>
                 <p><strong>Relationship Status:</strong> ${profile.relationship}</p>
                 <p><strong>Gender:</strong> ${profile.gender}</p>
-                ${profile.photo ? `<img src="${profile.photo}" alt="Profile Photo">` : ''}
             `;
         } else {
-            alert('No profile data found!');
-            window.location.href = "profile-form.html"; // Redirect to profile form
+            alert('No profile found. Please create a profile first.');
+            window.location.href = "profile-form.html";
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('user');
+            localStorage.removeItem('profile');
+            window.location.href = "index.html";
         }
     </script>
 </body>
