@@ -3,34 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Display</title>
-    <style>
-        /* Add your CSS styles here */
-    </style>
+    <title>Your Profile</title>
+    <link rel="stylesheet" href="profile-display.css">
 </head>
 <body>
-    <div class="profile-display-container">
-        <h1>Your Profile</h1>
-        <div id="profile-details">
-            <!-- Details will be populated here -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <h1>Kabi Raj Bhatt</h1>
         </div>
-        <button onclick="logout()">Logout</button>
+        <div class="nav-right">
+            <button onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <!-- Cover Photo -->
+        <div class="cover-photo"></div>
+
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <img src="" alt="Profile Photo" class="profile-photo" id="profile-photo">
+            <h1 id="profile-name"></h1>
+            <p class="bio" id="bio"></p>
+        </div>
+
+        <!-- Profile Details -->
+        <div class="profile-details">
+            <div class="detail-card">
+                <h3>About</h3>
+                <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
+                <p><strong>Email:</strong> <span id="email"></span></p>
+            </div>
+        </div>
+
+        <!-- Posts Feed -->
+        <div class="posts-feed">
+            <div class="post">
+                <p>Your posts will appear here.</p>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Retrieve profile
+        // Retrieve profile data
         const email = localStorage.getItem('currentUser');
         const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
         const profile = profiles.find(p => p.email === email);
 
         if (profile) {
-            document.getElementById('profile-details').innerHTML = `
-                <p><strong>Email:</strong> ${profile.email}</p>
-                <p><strong>First Name:</strong> ${profile.firstName}</p>
-                <p><strong>Last Name:</strong> ${profile.lastName}</p>
-                <p><strong>Date of Birth:</strong> ${profile.dob}</p>
-                <p><strong>Address:</strong> ${profile.address}</p>
-            `;
+            document.getElementById('profile-photo').src = profile.profilePhoto;
+            document.getElementById('profile-name').textContent = `${profile.firstName} ${profile.lastName}`;
+            document.getElementById('bio').textContent = profile.bio;
+            document.getElementById('dob').textContent = profile.dob;
+            document.getElementById('email').textContent = profile.email;
         } else {
             alert('Profile not found!');
             window.location.href = "profile-form.html";
@@ -38,7 +63,7 @@
 
         function logout() {
             localStorage.removeItem('currentUser');
-            window.location.href = "index.html";
+            window.location.href = "kabiraj login.html";
         }
     </script>
 </body>
