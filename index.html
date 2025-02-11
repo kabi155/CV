@@ -3,137 +3,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KABI RAJ BHATT - VIP</title>
-    <style>
-        /* General Styles */
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: url('kabiraj (13).jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #fff;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            position: relative;
-        }
-
-        /* Overlay for Background Image */
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1;
-        }
-
-        /* Main Content Container */
-        .content {
-            position: relative;
-            z-index: 2;
-            padding: 20px;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            max-width: 600px;
-            width: 90%;
-        }
-
-        /* Heading Styles */
-        h1 {
-            font-size: 3em;
-            margin: 0;
-            color: gold;
-        }
-
-        h2 {
-            font-size: 2em;
-            margin: 10px 0;
-            color: gold;
-        }
-
-        /* Age and Time Display */
-        #age {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: gold;
-        }
-
-        #time {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: gold;
-        }
-
-        /* Slogan */
-        .slogan {
-            font-size: 1.5em;
-            color: #fff;
-            background-color: #FFCC00;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            font-weight: bold;
-        }
-
-        /* Button Styles */
-        .enter-btn, .signup-btn, .login-btn, .photo-btn, .back-btn {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1.5em;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: background 0.3s ease;
-        }
-
-        .enter-btn, .signup-btn, .back-btn {
-            background: gold;
-            color: black;
-        }
-
-        .enter-btn:hover, .signup-btn:hover, .back-btn:hover {
-            background: #ffcc00;
-        }
-
-        .login-btn {
-            background: #4285f4; /* Blue color for login */
-            color: white;
-        }
-
-        .login-btn:hover {
-            background: #357abd;
-        }
-
-        .photo-btn {
-            background: green;
-            color: white;
-        }
-
-        .photo-btn:hover {
-            background: #4CAF50;
-        }
-    </style>
+    <link rel="stylesheet" href="stylesmain.css">
 </head>
 <body>
-    <!-- Overlay for Background Image -->
     <div class="overlay"></div>
-
-    <!-- Main Content -->
     <div class="content">
         <h1>KABI RAJ BHATT</h1>
         <h2 id="age">Calculating...</h2>
         <div id="time"></div>
         <div class="slogan">एक सकारात्मक सोच तपाईको जीवन बदल्न सक्छ।</div>
-
-        <!-- Buttons -->
         <button class="enter-btn" onclick="enterSite()">Enter</button>
         <button class="signup-btn" onclick="signupSite()">Sign Up</button>
         <button class="login-btn" onclick="loginSite()">Login</button>
@@ -196,11 +74,11 @@
         }
 
         function signupSite() {
-            window.location.href = "kabiraj form.html"; // Redirect to signup page
+            window.location.href = "kabiraj form.html";
         }
 
         function loginSite() {
-            window.location.href = "kabiraj login.html"; // Redirect to login page
+            window.location.href = "kabiraj login.html";
         }
 
         function goToPhotoPage() {
