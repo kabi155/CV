@@ -1,3 +1,89 @@
+// Bottom Navigation Functions
+function showPhotosModal() {
+    document.getElementById('photosModal').style.display = 'block';
+    loadPhotos();
+}
+
+function closePhotosModal() {
+    document.getElementById('photosModal').style.display = 'none';
+}
+
+function showRelativesModal() {
+    document.getElementById('relativesModal').style.display = 'block';
+    loadRelatives();
+}
+
+function closeRelativesModal() {
+    document.getElementById('relativesModal').style.display = 'none';
+}
+
+function showMessagesModal() {
+    document.getElementById('messagesModal').style.display = 'block';
+    loadConversations();
+}
+
+function closeMessagesModal() {
+    document.getElementById('messagesModal').style.display = 'none';
+}
+
+// Photo Management
+function loadPhotos() {
+    const photoGrid = document.getElementById('photoGrid');
+    photoGrid.innerHTML = '';
+    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+    
+    posts.forEach(post => {
+        if(post.image) {
+            const img = document.createElement('img');
+            img.src = post.image;
+            img.classList.add('photo-item');
+            photoGrid.appendChild(img);
+        }
+    });
+}
+
+// Relative Management
+function loadRelatives() {
+    const relativesList = document.getElementById('relativesList');
+    relativesList.innerHTML = '';
+    const friends = JSON.parse(localStorage.getItem('friends')) || [];
+    
+    friends.forEach(friend => {
+        if(friend.status === 'accepted') {
+            const relativeItem = document.createElement('div');
+            relativeItem.textContent = friend.name;
+            relativesList.appendChild(relativeItem);
+        }
+    });
+}
+
+// Message Management
+function loadConversations() {
+    const conversationList = document.getElementById('conversationList');
+    conversationList.innerHTML = '';
+    const messages = JSON.parse(localStorage.getItem('messages')) || [];
+    
+    // Implement conversation loading logic
+}
+
+function sendMessage() {
+    const messageText = document.getElementById('messageText').value;
+    if(messageText.trim()) {
+        const newMessage = {
+            sender: currentUser.email,
+            content: messageText,
+            timestamp: new Date().toISOString()
+        };
+        
+        // Save to localStorage
+        const messages = JSON.parse(localStorage.getItem('messages')) || [];
+        messages.push(newMessage);
+        localStorage.setItem('messages', JSON.stringify(messages));
+        
+        // Clear input
+        document.getElementById('messageText').value = '';
+    }
+}
 // Load Profile Data
 const email = localStorage.getItem('currentUser');
 const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
