@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community Profile</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="profile-display.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Community Profile</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="profile-display.css">
+    </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-left">
             <h1><i class="fas fa-users"></i> Community Profile</h1>
@@ -73,7 +72,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Bottom Navigation -->
         <div class="bottom-nav">
             <button onclick="showThoughtModal()"><i class="fas fa-comment"></i> Thought</button>
@@ -83,8 +81,7 @@
         </div>
 
         <!-- Modals -->
-        <!-- Thought Modal -->
-        <div id="thoughtModal" class="modal">
+         <div id="thoughtModal" class="modal">
             <div class="modal-content">
                 <h2><i class="fas fa-pen-alt"></i> Create Post</h2>
                 <textarea placeholder="What's on your mind?" id="postText"></textarea>
@@ -124,16 +121,22 @@
         <!-- Photos Modal -->
         <div id="photosModal" class="modal">
             <div class="modal-content">
-                <h2><i class="fas fa-images"></i> Photos</h2>
-                <div class="photo-grid" id="photoGrid"></div>
+                <h2><i class="fas fa-images"></i> Your Photos</h2>
+                <div class="photo-grid" id="photoGrid">
+                    <!-- Photos will be loaded here dynamically -->
+                </div>
+                <button onclick="closePhotosModal()">Close</button>
             </div>
         </div>
 
         <!-- Relatives Modal -->
         <div id="relativesModal" class="modal">
             <div class="modal-content">
-                <h2><i class="fas fa-user-friends"></i> Relatives</h2>
-                <div class="relatives-list" id="relativesList"></div>
+                <h2><i class="fas fa-user-friends"></i> Your Relatives</h2>
+                <div class="relatives-list" id="relativesList">
+                    <!-- Relatives will be loaded here dynamically -->
+                </div>
+                <button onclick="closeRelativesModal()">Close</button>
             </div>
         </div>
 
@@ -141,16 +144,14 @@
         <div id="messagesModal" class="modal">
             <div class="modal-content">
                 <h2><i class="fas fa-comments"></i> Messages</h2>
-                <div class="message-container">
-                    <div class="conversation-list" id="conversationList"></div>
-                    <div class="chat-area">
-                        <div class="message-history" id="messageHistory"></div>
-                        <div class="message-input">
-                            <input type="text" placeholder="Type message..." id="messageText">
-                            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
-                        </div>
-                    </div>
+                <div class="conversation-list" id="conversationList">
+                    <!-- Conversations will be loaded here -->
                 </div>
+                <div class="message-input">
+                    <input type="text" id="messageText" placeholder="Type your message...">
+                    <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Send</button>
+                </div>
+                <button onclick="closeMessagesModal()">Close</button>
             </div>
         </div>
     </div>
