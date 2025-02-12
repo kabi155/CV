@@ -5,49 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="profile-display.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-left">
             <h1><i class="fas fa-users"></i> Community Profile</h1>
-            <!-- Functional Search -->
             <div class="search-container">
-                <input type="text" placeholder="Search members..." id="searchInput" onkeyup="showSearchResults()">
+                <input type="text" placeholder="Search members..." id="searchInput">
+                <button onclick="searchMembers()"><i class="fas fa-search"></i></button>
                 <div class="search-results" id="searchResults"></div>
-                <button class="search-btn">
-                    <i class="fas fa-search"></i>
-                </button>
             </div>
         </div>
         <div class="nav-right">
-            <button class="logout-btn" onclick="logout()">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </button>
+            <button onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
         </div>
     </nav>
 
-    <!-- Main Content -->
+    <!-- Profile Content -->
     <div class="profile-container">
         <!-- Cover Photo -->
         <div class="cover-photo"></div>
 
         <!-- Profile Header -->
         <div class="profile-header">
-            <img src="" alt="Profile Photo" class="profile-photo" id="profile-photo">
-            <h1 id="full-name"></h1>
-            <p class="bio" id="bio-text"></p>
+            <img src="https://via.placeholder.com/150" alt="Profile Photo" class="profile-photo" id="profile-photo">
+            <h1 id="full-name">John Doe</h1>
+            <p class="bio" id="bio-text">Welcome to my profile!</p>
         </div>
 
         <!-- Action Buttons -->
         <div class="action-buttons">
-            <button class="action-btn" onclick="showEditModal()">
-                <i class="fas fa-user-edit"></i> Edit Profile
-            </button>
-            <button class="action-btn" onclick="showThoughtModal()">
-                <i class="fas fa-comment-dots"></i> Post Thought
-            </button>
+            <button onclick="showEditModal()"><i class="fas fa-user-edit"></i> Edit Profile</button>
+            <button onclick="showThoughtModal()"><i class="fas fa-comment-dots"></i> Post Thought</button>
         </div>
 
         <!-- Profile Details -->
@@ -57,27 +48,27 @@
                 <div class="detail-grid">
                     <div class="detail-item">
                         <i class="fas fa-birthday-cake"></i>
-                        <span id="dob"></span>
+                        <span id="dob">1990-01-01</span>
                     </div>
                     <div class="detail-item">
                         <i class="fas fa-envelope"></i>
-                        <span id="email"></span>
+                        <span id="email">john.doe@example.com</span>
                     </div>
                     <div class="detail-item" id="fatherNameField">
                         <i class="fas fa-male"></i>
-                        <span id="fatherName"></span>
+                        <span id="fatherName">John Doe Sr.</span>
                     </div>
                     <div class="detail-item" id="motherNameField">
                         <i class="fas fa-female"></i>
-                        <span id="motherName"></span>
+                        <span id="motherName">Jane Doe</span>
                     </div>
                     <div class="detail-item" id="grandfatherNameField">
                         <i class="fas fa-user-tie"></i>
-                        <span id="grandfatherName"></span>
+                        <span id="grandfatherName">James Doe</span>
                     </div>
                     <div class="detail-item" id="addressField">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span id="address"></span>
+                        <span id="address">123 Main St, City</span>
                     </div>
                 </div>
             </div>
@@ -85,24 +76,10 @@
 
         <!-- Bottom Navigation -->
         <div class="bottom-nav">
-            <button class="nav-btn" onclick="showThoughtModal()">
-                <i class="fas fa-comment"></i> Thought
-            </button>
-            <button class="nav-btn" onclick="showPhotosModal()">
-                <i class="fas fa-images"></i> Photos
-            </button>
-            <button class="nav-btn" onclick="showRelativesModal()">
-                <i class="fas fa-user-friends"></i> Relatives
-            </button>
-            <button class="nav-btn" onclick="showMessagesModal()">
-                <i class="fas fa-comments"></i> Messages
-            </button>
-        </div>
-
-        <!-- Thought Posts Section -->
-        <div class="posts-section">
-            <h3><i class="fas fa-stream"></i> Recent Thoughts</h3>
-            <div class="posts-grid" id="postsList"></div>
+            <button onclick="showThoughtModal()"><i class="fas fa-comment"></i> Thought</button>
+            <button onclick="showPhotosModal()"><i class="fas fa-images"></i> Photos</button>
+            <button onclick="showRelativesModal()"><i class="fas fa-user-friends"></i> Relatives</button>
+            <button onclick="showMessagesModal()"><i class="fas fa-comments"></i> Messages</button>
         </div>
 
         <!-- Modals -->
@@ -110,17 +87,17 @@
         <div id="thoughtModal" class="modal">
             <div class="modal-content">
                 <h2><i class="fas fa-pen-alt"></i> Create Post</h2>
-                <textarea placeholder="What's on your mind?" class="post-input"></textarea>
+                <textarea placeholder="What's on your mind?" id="postText"></textarea>
                 <div class="post-actions">
                     <label class="file-upload">
                         <i class="fas fa-image"></i>
-                        <input type="file" accept="image/*" hidden>
+                        <input type="file" id="postImage" accept="image/*" hidden>
                     </label>
-                    <select class="privacy-select">
-                        <option value="public"><i class="fas fa-globe"></i> Public</option>
-                        <option value="friends"><i class="fas fa-user-friends"></i> Friends</option>
+                    <select id="postPrivacy">
+                        <option value="public">Public</option>
+                        <option value="friends">Friends</option>
                     </select>
-                    <button class="post-btn" onclick="postThought()">Publish</button>
+                    <button onclick="postThought()">Publish</button>
                 </div>
             </div>
         </div>
@@ -129,28 +106,26 @@
         <div id="editModal" class="modal">
             <div class="modal-content">
                 <h2><i class="fas fa-user-cog"></i> Edit Profile</h2>
-                <div class="form-group">
-                    <input type="text" id="editFirstName" placeholder="First Name">
-                    <input type="text" id="editLastName" placeholder="Last Name">
-                </div>
-                <textarea id="editBio" placeholder="Your Bio"></textarea>
-                <input type="text" id="editProfilePhoto" placeholder="Profile Photo URL">
-                <div class="form-group">
-                    <input type="text" id="editFatherName" placeholder="Father's Name">
-                    <input type="text" id="editMotherName" placeholder="Mother's Name">
-                    <input type="text" id="editGrandfatherName" placeholder="Grandfather's Name">
-                    <input type="text" id="editAddress" placeholder="Address">
-                </div>
-                <div class="email-verification">
-                    <input type="email" id="editEmail" placeholder="Email">
-                    <button class="verify-btn" onclick="verifyEmail()">
-                        <i class="fas fa-envelope"></i> Verify
-                    </button>
-                </div>
+                <input type="text" id="editFirstName" placeholder="First Name" value="John">
+                <input type="text" id="editLastName" placeholder="Last Name" value="Doe">
+                <textarea id="editBio" placeholder="Bio">Welcome to my profile!</textarea>
+                <input type="text" id="editProfilePhoto" placeholder="Profile Photo URL" value="https://via.placeholder.com/150">
+                <input type="text" id="editFatherName" placeholder="Father's Name" value="John Doe Sr.">
+                <input type="text" id="editMotherName" placeholder="Mother's Name" value="Jane Doe">
+                <input type="text" id="editGrandfatherName" placeholder="Grandfather's Name" value="James Doe">
+                <input type="text" id="editAddress" placeholder="Address" value="123 Main St, City">
                 <div class="form-actions">
-                    <button class="save-btn" onclick="saveDetails()">Save Changes</button>
-                    <button class="cancel-btn" onclick="closeEditModal()">Cancel</button>
+                    <button onclick="saveDetails()">Save Changes</button>
+                    <button onclick="closeEditModal()">Cancel</button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Photos Modal -->
+        <div id="photosModal" class="modal">
+            <div class="modal-content">
+                <h2><i class="fas fa-images"></i> Photos</h2>
+                <div class="photo-grid" id="photoGrid"></div>
             </div>
         </div>
 
@@ -172,26 +147,14 @@
                         <div class="message-history" id="messageHistory"></div>
                         <div class="message-input">
                             <input type="text" placeholder="Type message..." id="messageText">
-                            <label class="file-upload">
-                                <i class="fas fa-image"></i>
-                                <input type="file" accept="image/*" hidden>
-                            </label>
                             <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Photos Modal -->
-        <div id="photosModal" class="modal">
-            <div class="modal-content">
-                <h2><i class="fas fa-images"></i> All Photos</h2>
-                <div class="photo-grid" id="photoGrid"></div>
-            </div>
-        </div>
     </div>
 
-    <script src="profile-script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
