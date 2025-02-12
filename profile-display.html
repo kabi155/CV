@@ -3,125 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Profile</title>
+    <title>Social Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="profile-display.css">
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="nav-left">
-            <h1>Social Profile</h1>
-            <!-- Search Button -->
-            <div class="search-container">
-                <input type="text" placeholder="Search members..." id="searchInput">
-                <button onclick="searchMembers()">🔍</button>
-            </div>
+        <div class="nav-brand">
+            <i class="fas fa-users"></i> SocialConnect
         </div>
-        <div class="nav-right">
-            <button onclick="logout()">Logout</button>
+        <div class="search-container">
+            <input type="text" placeholder="Search members..." id="searchInput">
+            <button class="search-btn" onclick="searchMembers()">
+                <i class="fas fa-search"></i>
+            </button>
         </div>
+        <button class="logout-btn" onclick="logout()">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
     </nav>
 
-    <!-- Profile Content -->
-    <div class="profile-container">
-        <!-- Cover Photo -->
-        <div class="cover-photo"></div>
-
+    <!-- Main Content -->
+    <div class="container">
         <!-- Profile Header -->
         <div class="profile-header">
-            <img src="" alt="Profile Photo" class="profile-photo" id="profile-photo">
-            <h1 id="full-name"></h1>
-            <p class="bio" id="bio-text"></p>
-        </div>
-
-        <!-- Profile Details -->
-        <div class="profile-details">
-            <div class="detail-card">
-                <h3>About Me</h3>
-                <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
-                <p><strong>Email:</strong> <span id="email"></span></p>
-                <!-- Conditional Fields -->
-                <div id="conditionalFields">
-                    <p><strong>Father's Name:</strong> <span id="fatherName"></span></p>
-                    <p><strong>Mother's Name:</strong> <span id="motherName"></span></p>
-                    <p><strong>Grandfather's Name:</strong> <span id="grandfatherName"></span></p>
-                    <p><strong>Address:</strong> <span id="address"></span></p>
+            <div class="cover-photo"></div>
+            <div class="profile-info">
+                <img src="" alt="Profile" class="profile-photo" id="profile-photo">
+                <div class="profile-meta">
+                    <h1 id="full-name"></h1>
+                    <p class="bio" id="bio-text"></p>
                 </div>
             </div>
         </div>
 
         <!-- Action Buttons -->
-        <div class="action-buttons">
-            <button onclick="showEditModal()">✏️ Edit Profile</button>
+        <div class="action-bar">
+            <button class="action-btn" onclick="showEditModal()">
+                <i class="fas fa-user-edit"></i> Edit
+            </button>
+            <button class="action-btn" onclick="showThoughtModal()">
+                <i class="fas fa-comment-dots"></i> Post
+            </button>
         </div>
 
-        <!-- Bottom Buttons -->
-        <div class="bottom-buttons">
-            <button onclick="showThoughtModal()">💭 Thought</button>
-            <button onclick="showRelatives()">👪 Relatives</button>
-            <button onclick="showChat()">💬 Chat</button>
-            <button onclick="verifyEmail()">📧 Verify Email</button>
-            <button onclick="showPhotos()">📷 Photos</button>
-        </div>
-
-        <!-- Thought Posts Section -->
-        <div id="thoughtPosts" class="thought-posts">
-            <h3>Your Thoughts</h3>
-            <div class="posts-list"></div>
-        </div>
-
-        <!-- Thought Modal -->
-        <div id="thoughtModal" class="modal">
-            <div class="modal-content">
-                <h2>Post a Thought</h2>
-                <textarea placeholder="What's on your mind?"></textarea>
-                <input type="file" accept="image/*">
-                <select id="privacy">
-                    <option value="public">🌍 Public</option>
-                    <option value="friends">👥 Friends</option>
-                    <option value="specific">👤 Specific</option>
-                </select>
-                <button onclick="postThought()">Post</button>
-                <button onclick="closeThoughtModal()">Cancel</button>
+        <!-- Profile Details -->
+        <div class="profile-details">
+            <div class="detail-card">
+                <h3><i class="fas fa-info-circle"></i> About Me</h3>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <i class="fas fa-birthday-cake"></i>
+                        <span id="dob"></span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-envelope"></i>
+                        <span id="email"></span>
+                    </div>
+                    <div class="detail-item" id="fatherNameField">
+                        <i class="fas fa-male"></i>
+                        <span id="fatherName"></span>
+                    </div>
+                    <div class="detail-item" id="motherNameField">
+                        <i class="fas fa-female"></i>
+                        <span id="motherName"></span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Relatives List -->
-        <div id="relativesList" class="hidden">
-            <h3>Your Relatives</h3>
-            <div class="relatives-list"></div>
+        <!-- Thought Posts Section -->
+        <div class="posts-section">
+            <h3><i class="fas fa-stream"></i> Recent Thoughts</h3>
+            <div class="posts-grid" id="postsList"></div>
         </div>
 
-        <!-- Chat Interface -->
-        <div id="chatInterface" class="hidden">
-            <h3>Chat with Relatives</h3>
-            <div class="chat-messages"></div>
-            <input type="text" class="message-input" placeholder="Type a message...">
-            <button onclick="sendMessage()">Send</button>
-        </div>
-
-        <!-- Photos Gallery -->
-        <div id="photoGallery" class="hidden">
-            <h3>Your Photos</h3>
-            <div class="photo-grid"></div>
+        <!-- Modals (Thought/Edit) -->
+        <div id="thoughtModal" class="modal">
+            <div class="modal-content">
+                <h2><i class="fas fa-pen-alt"></i> Create Post</h2>
+                <textarea placeholder="What's on your mind?" class="post-input"></textarea>
+                <div class="post-actions">
+                    <label class="file-upload">
+                        <i class="fas fa-image"></i>
+                        <input type="file" accept="image/*" hidden>
+                    </label>
+                    <select class="privacy-select">
+                        <option value="public"><i class="fas fa-globe"></i> Public</option>
+                        <option value="friends"><i class="fas fa-user-friends"></i> Friends</option>
+                    </select>
+                    <button class="post-btn" onclick="postThought()">Publish</button>
+                </div>
+            </div>
         </div>
 
         <!-- Edit Profile Modal -->
         <div id="editModal" class="modal">
             <div class="modal-content">
-                <h2>Edit Profile</h2>
-                <input type="text" id="editFirstName" placeholder="First Name">
-                <input type="text" id="editLastName" placeholder="Last Name">
-                <textarea id="editBio" placeholder="Bio"></textarea>
-                <input type="text" id="editProfilePhoto" placeholder="Profile Photo URL">
-                <div id="editConditionalFields">
-                    <input type="text" id="editFatherName" placeholder="Father's Name">
-                    <input type="text" id="editMotherName" placeholder="Mother's Name">
-                    <input type="text" id="editGrandfatherName" placeholder="Grandfather's Name">
-                    <input type="text" id="editAddress" placeholder="Address">
+                <h2><i class="fas fa-user-cog"></i> Edit Profile</h2>
+                <div class="form-group">
+                    <input type="text" id="editFirstName" placeholder="First Name">
+                    <input type="text" id="editLastName" placeholder="Last Name">
                 </div>
-                <button onclick="saveDetails()">Save Changes</button>
-                <button onclick="closeEditModal()">Cancel</button>
+                <textarea id="editBio" placeholder="Your Bio"></textarea>
+                <input type="text" id="editProfilePhoto" placeholder="Profile Photo URL">
+                <div class="form-actions">
+                    <button class="save-btn" onclick="saveDetails()">Save Changes</button>
+                    <button class="cancel-btn" onclick="closeEditModal()">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
