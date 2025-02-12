@@ -14,8 +14,9 @@
             <i class="fas fa-users"></i> SocialConnect
         </div>
         <div class="search-container">
-            <input type="text" placeholder="Search members..." id="searchInput">
-            <button class="search-btn" onclick="searchMembers()">
+            <input type="text" placeholder="Search members..." id="searchInput" onkeyup="showSearchResults()">
+            <div class="search-results" id="searchResults"></div>
+            <button class="search-btn">
                 <i class="fas fa-search"></i>
             </button>
         </div>
@@ -38,67 +39,60 @@
             </div>
         </div>
 
-        <!-- Action Buttons -->
-        <div class="action-bar">
-            <button class="action-btn" onclick="showEditModal()">
-                <i class="fas fa-user-edit"></i> Edit
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <button class="nav-btn" onclick="showThoughtModal()">
+                <i class="fas fa-comment"></i> Thought
             </button>
-            <button class="action-btn" onclick="showThoughtModal()">
-                <i class="fas fa-comment-dots"></i> Post
+            <button class="nav-btn" onclick="showPhotosModal()">
+                <i class="fas fa-images"></i> Photos
+            </button>
+            <button class="nav-btn" onclick="showRelativesModal()">
+                <i class="fas fa-user-friends"></i> Relatives
+            </button>
+            <button class="nav-btn" onclick="showMessagesModal()">
+                <i class="fas fa-comments"></i> Messages
             </button>
         </div>
 
-        <!-- Profile Details -->
-        <div class="profile-details">
-            <div class="detail-card">
-                <h3><i class="fas fa-info-circle"></i> About Me</h3>
-                <div class="detail-grid">
-                    <div class="detail-item">
-                        <i class="fas fa-birthday-cake"></i>
-                        <span id="dob"></span>
-                    </div>
-                    <div class="detail-item">
-                        <i class="fas fa-envelope"></i>
-                        <span id="email"></span>
-                    </div>
-                    <div class="detail-item" id="fatherNameField">
-                        <i class="fas fa-male"></i>
-                        <span id="fatherName"></span>
-                    </div>
-                    <div class="detail-item" id="motherNameField">
-                        <i class="fas fa-female"></i>
-                        <span id="motherName"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Existing content remains same until modals section -->
 
-        <!-- Thought Posts Section -->
-        <div class="posts-section">
-            <h3><i class="fas fa-stream"></i> Recent Thoughts</h3>
-            <div class="posts-grid" id="postsList"></div>
-        </div>
-
-        <!-- Modals (Thought/Edit) -->
-        <div id="thoughtModal" class="modal">
+        <!-- New Modals -->
+        <div id="relativesModal" class="modal">
             <div class="modal-content">
-                <h2><i class="fas fa-pen-alt"></i> Create Post</h2>
-                <textarea placeholder="What's on your mind?" class="post-input"></textarea>
-                <div class="post-actions">
-                    <label class="file-upload">
-                        <i class="fas fa-image"></i>
-                        <input type="file" accept="image/*" hidden>
-                    </label>
-                    <select class="privacy-select">
-                        <option value="public"><i class="fas fa-globe"></i> Public</option>
-                        <option value="friends"><i class="fas fa-user-friends"></i> Friends</option>
-                    </select>
-                    <button class="post-btn" onclick="postThought()">Publish</button>
+                <h2><i class="fas fa-user-friends"></i> Relatives</h2>
+                <div class="relatives-list" id="relativesList"></div>
+            </div>
+        </div>
+
+        <div id="messagesModal" class="modal">
+            <div class="modal-content">
+                <h2><i class="fas fa-comments"></i> Messages</h2>
+                <div class="message-container">
+                    <div class="conversation-list" id="conversationList"></div>
+                    <div class="chat-area">
+                        <div class="message-history" id="messageHistory"></div>
+                        <div class="message-input">
+                            <input type="text" placeholder="Type message..." id="messageText">
+                            <label class="file-upload">
+                                <i class="fas fa-image"></i>
+                                <input type="file" accept="image/*" hidden>
+                            </label>
+                            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Edit Profile Modal -->
+        <div id="photosModal" class="modal">
+            <div class="modal-content">
+                <h2><i class="fas fa-images"></i> All Photos</h2>
+                <div class="photo-grid" id="photoGrid"></div>
+            </div>
+        </div>
+
+        <!-- Updated Edit Modal -->
         <div id="editModal" class="modal">
             <div class="modal-content">
                 <h2><i class="fas fa-user-cog"></i> Edit Profile</h2>
@@ -107,6 +101,16 @@
                     <input type="text" id="editLastName" placeholder="Last Name">
                 </div>
                 <textarea id="editBio" placeholder="Your Bio"></textarea>
+                <input type="text" id="editFatherName" placeholder="Father's Name">
+                <input type="text" id="editMotherName" placeholder="Mother's Name">
+                <input type="text" id="editGrandfatherName" placeholder="Grandfather's Name">
+                <input type="text" id="editAddress" placeholder="Address">
+                <div class="email-verification">
+                    <input type="email" id="editEmail" placeholder="Email">
+                    <button class="verify-btn" onclick="verifyEmail()">
+                        <i class="fas fa-envelope"></i> Verify
+                    </button>
+                </div>
                 <input type="text" id="editProfilePhoto" placeholder="Profile Photo URL">
                 <div class="form-actions">
                     <button class="save-btn" onclick="saveDetails()">Save Changes</button>
