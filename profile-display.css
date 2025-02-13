@@ -339,3 +339,73 @@ body {
     color: white;
     cursor: pointer;
 }
+
+/* Conversation List */
+.conversation-list {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.conversation-item {
+    padding: 8px;
+    margin: 5px 0;
+    background: #f5f5f5;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.conversation-item:hover {
+    background: #e0e0e0;
+}
+
+.conversation-item.active {
+    background: #4CAF50;
+    color: white;
+}
+
+/* Message History */
+.message-history {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.message {
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 4px;
+}
+
+.message.sent {
+    background: #4CAF50;
+    color: white;
+    align-self: flex-end;
+}
+
+.message.received {
+    background: #f1f1f1;
+    align-self: flex-start;
+}
+
+/* Message Input */
+.message-input {
+    display: flex;
+    gap: 10px;
+}
+
+.message-input input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.message-input button {
+    padding: 8px 12px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
