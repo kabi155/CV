@@ -1,24 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Community Profile</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <link rel="stylesheet" href="profile-display.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile</title>
+    <link rel="stylesheet" href="profile-display.css">
+</head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-left">
-            <h1><i class="fas fa-users"></i> Community Profile</h1>
-            <div class="search-container">
-                <input type="text" placeholder="Search members..." id="searchInput">
-                <button onclick="searchMembers()"><i class="fas fa-search"></i></button>
-                <div class="search-results" id="searchResults"></div>
-            </div>
+            <h1>Social Profile</h1>
         </div>
         <div class="nav-right">
-            <button onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            <button onclick="logout()">Logout</button>
         </div>
     </nav>
 
@@ -29,17 +24,35 @@
 
         <!-- Profile Header -->
         <div class="profile-header">
-            <img src="https://via.placeholder.com/150" alt="Profile Photo" class="profile-photo" id="profile-photo">
-            <h1 id="full-name">John Doe</h1>
-            <p class="bio" id="bio-text">Welcome to my profile!</p>
+            <!-- Profile Photo with Upload Option -->
+            <div class="profile-photo-container">
+                <img src="" alt="Profile Photo" class="profile-photo" id="profile-photo">
+                <label for="profile-photo-upload" class="upload-label">
+                    <i class="fas fa-camera"></i>
+                </label>
+                <input type="file" id="profile-photo-upload" accept="image/*" hidden>
+            </div>
+            <h1 id="full-name"></h1>
+            <p class="bio" id="bio-text"></p>
+        </div>
+
+        <!-- Profile Details -->
+        <div class="profile-details">
+            <div class="detail-card">
+                <h3>About Me</h3>
+                <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
+                <p><strong>Email:</strong> <span id="email"></span></p>
+                <p><strong>Father's Name:</strong> <span id="fatherName"></span></p>
+                <p><strong>Mother's Name:</strong> <span id="motherName"></span></p>
+                <p><strong>Address:</strong> <span id="address"></span></p>
+            </div>
         </div>
 
         <!-- Action Buttons -->
         <div class="action-buttons">
-            <button onclick="showEditModal()"><i class="fas fa-user-edit"></i> Edit Profile</button>
-            <button onclick="showThoughtModal()"><i class="fas fa-comment-dots"></i> Post Thought</button>
+            <button onclick="showEditModal()">✏️ Edit Profile</button>
         </div>
-
+    </div>
         <!-- Profile Details -->
         <div class="profile-details">
             <div class="detail-card">
