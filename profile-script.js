@@ -85,21 +85,91 @@ function sendMessage() {
     }
 }
 // Load Profile Data
-const email = localStorage.getItem('currentUser');
-const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
-const profile = profiles.find(p => p.email === email);
+document.addEventListener('DOMContentLoaded', () => {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+        window.location.href = "login.html"; // Redirect to login if no user is logged in
+        return;
+    }
 
-if (profile) {
-    document.getElementById('profile-photo').src = profile.profilePhoto || 'default.jpg';
-    document.getElementById('full-name').textContent = `${profile.firstName} ${profile.lastName}`;
-    document.getElementById('bio-text').textContent = profile.bio || 'No bio provided';
-    document.getElementById('dob').textContent = profile.dob || 'Not provided';
-    document.getElementById('email').textContent = profile.email;
-    document.getElementById('fatherName').textContent = profile.fatherName || 'Not provided';
-    document.getElementById('motherName').textContent = profile.motherName || 'Not provided';
-    document.getElementById('grandfatherName').textContent = profile.grandfatherName || 'Not provided';
-    document.getElementById('address').textContent = profile.address || 'Not provided';
+    // Load profile data from localStorage
+    const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
+    const profile = profiles.find(p => p.email === currentUser.email);
 
+    if (profile) {
+        // Populate profile data
+        document.getElementById('profile-photo').src = profile.profilePhoto || 'default.jpg';
+        document.getElementById('full-name').textContent = `${profile.firstName} ${profile.lastName}`;
+        document.getElementById('bio-text').textContent = profile.bio || 'No bio yet';
+        document.getElementById('dob').textContent = profile.dob || 'Not set';
+        document.getElementById('email').textContent = profile.email;
+        document.getElementById('fatherName').textContent = profile.fatherName || 'Not provided';
+        document.getElementById('motherName').textContent = profile.motherName || 'Not provided';
+        document.getElementById('address').textContent = profile.address || 'Not provided';
+    } else {
+        alert('Profile not found!');
+        window.location.href = "login.html";
+    }
+
+    // Profile Photo Upload Functionality
+    const profilePhotoUpload = document.getElementById('profile-photo-upload');
+    profilePhotoUpload.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const profilePhoto = document.getElementById('profile-photo');
+                profilePhoto.src = e.target.result;
+
+                // Save the new profile photo to localStorage
+                profile.profilePhoto = e.target.result;
+                localStorage.setItem('profiles', JSON.stringify(profiles));
+                localStorage.setItem('currentUser', JSON.stringify(profile));
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+});
+
+}
+
+// Edit Profile Functions
+function showEditModal() {
+    const profile = JSON.parse(localStorage.getItem('currentUser'));
+    document.getElementById('editModal').style.display = 'block';
+    document.getElementById('editFirstName').value = profile.firstName || '';
+    document.getElementById('editLastName').value = profile.lastName || '';
+    document.getElementById('editBio').value = profile.bio || '';
+    document.getElementById('editProfilePhoto').value = profile.profilePhoto || '';
+    document.getElementById('editFatherName').value = profile.fatherName || '';
+    document.getElementById('editMotherName').value = profile.motherName || '';
+    document.getElementById('editAddress').value = profile.address || '';
+}
+
+function closeEditModal() {
+    document.getElementById('editModal').style.display = 'none';
+}
+
+function saveDetails() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
+    const profile = profiles.find(p => p.email === currentUser.email);
+
+    if (profile) {
+        profile.firstName = document.getElementById('editFirstName').value;
+        profile.lastName = document.getElementById('editLastName').value;
+        profile.bio = document.getElementById('editBio').value;
+        profile.profilePhoto = document.getElementById('editProfilePhoto').value;
+        profile.fatherName = document.getElementById('editFatherName').value;
+        profile.motherName = document.getElementById('editMotherName').value;
+        profile.address = document.getElementById('editAddress').value;
+
+        localStorage.setItem('profiles', JSON.stringify(profiles));
+        localStorage.setItem('currentUser', JSON.stringify(profile));
+        closeEditModal();
+        location.reload(); // Refresh to show updated details
+    }
+}
     // Hide conditional fields if already updated
     if (profile.fatherName) document.getElementById('fatherName').parentElement.style.display = 'none';
     if (profile.motherName) document.getElementById('motherName').parentElement.style.display = 'none';
