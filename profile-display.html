@@ -141,19 +141,22 @@
         </div>
 
         <!-- Messages Modal -->
-        <div id="messagesModal" class="modal">
-            <div class="modal-content">
-                <h2><i class="fas fa-comments"></i> Messages</h2>
-                <div class="conversation-list" id="conversationList">
-                    <!-- Conversations will be loaded here -->
-                </div>
-                <div class="message-input">
-                    <input type="text" id="messageText" placeholder="Type your message...">
-                    <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Send</button>
-                </div>
-                <button onclick="closeMessagesModal()">Close</button>
+<div id="messagesModal" class="modal">
+    <div class="modal-content">
+        <h2><i class="fas fa-comments"></i> Messages</h2>
+        <div class="conversation-list" id="conversationList">
+            <!-- Conversations will be loaded here -->
+        </div>
+        <div class="chat-area">
+            <div class="message-history" id="messageHistory"></div>
+            <div class="message-input">
+                <input type="text" id="messageText" placeholder="Type your message...">
+                <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Send</button>
             </div>
         </div>
+        <button onclick="closeMessagesModal()">Close</button>
+    </div>
+</div>
     </div>
 
     <script src="profile-script.js"></script>
