@@ -3,23 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Relatives</title>
+    <title>Search Profiles</title>
     <link rel="stylesheet" href="friends.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Find Relatives</h1>
+    <div class="search-container">
+        <h1>Search Profiles</h1>
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Search by name...">
-            <button onclick="searchUsers()">Search</button>
+            <button onclick="searchProfiles()">Search</button>
         </div>
-        
-        <div id="searchResults" class="results-container"></div>
-        
-        <h2>Friend Requests</h2>
-        <div id="friendRequests" class="requests-container"></div>
+        <div class="results-container" id="resultsContainer">
+            <!-- Search results will appear here -->
+        </div>
     </div>
 
-    <script src="friends.js"></script>
+    <script>
+        // Function to search profiles by name
+        function searchProfiles() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const resultsContainer = document.getElementById('resultsContainer');
+
+            // Clear previous results
+            resultsContainer.innerHTML = '';
+
+            if (!searchTerm) {
+                resultsContainer.innerHTML = '<p>Please enter a name to search.</p>';
+                return;
+            }
+
+            // Filter users by first name or last name
+            const results = users.filter(user => 
+                user.firstName.toLowerCase().includes(searchTerm) ||
+                user.lastName.toLowerCase().includes(searchTerm)
+            );
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<p>No profiles found.</p>';
+                return;
+            }
+
+            // Display results
+            resultsContainer.innerHTML = results.map(user => `
+                <div class="user-card">
+                    <div>
+                        <h3>${user.firstName} ${user.lastName}</h3>
+                        <p>${user.email}</p>
+                    </div>
+                    <button onclick="viewProfile('${user.email}')">View Profile</button>
+                </div>
+            `).join('');
+        }
+
+        // Function to view a profile (you can expand this later)
+        function viewProfile(email) {
+            alert(`Viewing profile of user with email: ${email}`);
+            // You can redirect to a profile page or show a modal with more details
+        }
+    </script>
 </body>
 </html>
