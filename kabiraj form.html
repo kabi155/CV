@@ -5,7 +5,147 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="signup.css">
+</head><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+    <style>
+        /* Add this CSS if you don't have signup.css */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signup-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .signup-box h1 {
+            text-align: center;
+            color: #6a1b9a;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus {
+            border-color: #6a1b9a;
+            outline: none;
+        }
+
+        .signup-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #6a1b9a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .signup-button:hover {
+            background-color: #4a148c;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-link a {
+            color: #6a1b9a;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
+<body>
+    <div class="signup-container">
+        <div class="signup-box">
+            <h1>Join Us</h1>
+            <form id="signup-form">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="signup-button">Sign Up</button>
+            </form>
+            <p class="login-link">Already have an account? <a href="kabiraj login.html">Login</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form values
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Check if user already exists
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            if (users.some(user => user.email === email)) {
+                alert('User already exists!');
+                return;
+            }
+
+            // Create user object
+            const user = {
+                firstName,
+                lastName,
+                email,
+                password
+            };
+
+            // Save user to localStorage
+            users.push(user);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            alert('Signup successful!');
+            window.location.href = "kabiraj login.html";
+        });
+    </script>
+</body>
+</html>
 <body>
     <div class="signup-container">
         <div class="signup-box">
