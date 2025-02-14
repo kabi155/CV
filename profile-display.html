@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Profile</title>
-    <link rel="stylesheet" href="profile-display.css">
+    <link rel="stylesheet" href="styles/profile-display.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -24,14 +24,7 @@
 
         <!-- Profile Header -->
         <div class="profile-header">
-            <!-- Profile Photo with Upload Option -->
-            <div class="profile-photo-container">
-                <img src="" alt="Profile Photo" class="profile-photo" id="profile-photo">
-                <label for="profile-photo-upload" class="upload-label">
-                    <i class="fas fa-camera"></i>
-                </label>
-                <input type="file" id="profile-photo-upload" accept="image/*" hidden>
-            </div>
+            <img src="" alt="Profile Photo" class="profile-photo" id="profile-photo">
             <h1 id="full-name"></h1>
             <p class="bio" id="bio-text"></p>
         </div>
@@ -42,136 +35,39 @@
                 <h3>About Me</h3>
                 <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
                 <p><strong>Email:</strong> <span id="email"></span></p>
-                <p><strong>Father's Name:</strong> <span id="fatherName"></span></p>
-                <p><strong>Mother's Name:</strong> <span id="motherName"></span></p>
-                <p><strong>Address:</strong> <span id="address"></span></p>
             </div>
         </div>
 
-        <!-- Action Buttons -->
-        <div class="action-buttons">
-            <button onclick="showEditModal()">✏️ Edit Profile</button>
+        <!-- Posts Section -->
+        <div class="posts-feed">
+            <div class="post">
+                <p>Welcome to your profile! Start sharing your updates.</p>
+            </div>
         </div>
     </div>
-        <!-- Profile Details -->
-        <div class="profile-details">
-            <div class="detail-card">
-                <h3><i class="fas fa-info-circle"></i> About Me</h3>
-                <div class="detail-grid">
-                    <div class="detail-item">
-                        <i class="fas fa-birthday-cake"></i>
-                        <span id="dob">1990-01-01</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class="fas fa-envelope"></i>
-                        <span id="email">john.doe@example.com</span>
-                    </div>
-                    <div class="detail-item" id="fatherNameField">
-                        <i class="fas fa-male"></i>
-                        <span id="fatherName">John Doe Sr.</span>
-                    </div>
-                    <div class="detail-item" id="motherNameField">
-                        <i class="fas fa-female"></i>
-                        <span id="motherName">Jane Doe</span>
-                    </div>
-                    <div class="detail-item" id="grandfatherNameField">
-                        <i class="fas fa-user-tie"></i>
-                        <span id="grandfatherName">James Doe</span>
-                    </div>
-                    <div class="detail-item" id="addressField">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span id="address">123 Main St, City</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Bottom Navigation -->
-        <div class="bottom-nav">
-            <button onclick="showThoughtModal()"><i class="fas fa-comment"></i> Thought</button>
-            <button onclick="showPhotosModal()"><i class="fas fa-images"></i> Photos</button>
-            <button onclick="showRelativesModal()"><i class="fas fa-user-friends"></i> Relatives</button>
-            <button onclick="showMessagesModal()"><i class="fas fa-comments"></i> Messages</button>
-        </div>
 
-        <!-- Modals -->
-         <div id="thoughtModal" class="modal">
-            <div class="modal-content">
-                <h2><i class="fas fa-pen-alt"></i> Create Post</h2>
-                <textarea placeholder="What's on your mind?" id="postText"></textarea>
-                <div class="post-actions">
-                    <label class="file-upload">
-                        <i class="fas fa-image"></i>
-                        <input type="file" id="postImage" accept="image/*" hidden>
-                    </label>
-                    <select id="postPrivacy">
-                        <option value="public">Public</option>
-                        <option value="friends">Friends</option>
-                    </select>
-                    <button onclick="postThought()">Publish</button>
-                </div>
-            </div>
-        </div>
+    <script>
+        // Load Profile Data
+        const email = localStorage.getItem('currentUser');
+        const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
+        const profile = profiles.find(p => p.email === email);
 
-        <!-- Edit Profile Modal -->
-        <div id="editModal" class="modal">
-            <div class="modal-content">
-                <h2><i class="fas fa-user-cog"></i> Edit Profile</h2>
-                <input type="text" id="editFirstName" placeholder="First Name" value="John">
-                <input type="text" id="editLastName" placeholder="Last Name" value="Doe">
-                <textarea id="editBio" placeholder="Bio">Welcome to my profile!</textarea>
-                <input type="text" id="editProfilePhoto" placeholder="Profile Photo URL" value="https://via.placeholder.com/150">
-                <input type="text" id="editFatherName" placeholder="Father's Name" value="John Doe Sr.">
-                <input type="text" id="editMotherName" placeholder="Mother's Name" value="Jane Doe">
-                <input type="text" id="editGrandfatherName" placeholder="Grandfather's Name" value="James Doe">
-                <input type="text" id="editAddress" placeholder="Address" value="123 Main St, City">
-                <div class="form-actions">
-                    <button onclick="saveDetails()">Save Changes</button>
-                    <button onclick="closeEditModal()">Cancel</button>
-                </div>
-            </div>
-        </div>
+        if (profile) {
+            document.getElementById('profile-photo').src = profile.profilePhoto;
+            document.getElementById('full-name').textContent = `${profile.firstName} ${profile.lastName}`;
+            document.getElementById('bio-text').textContent = profile.bio;
+            document.getElementById('dob').textContent = profile.dob;
+            document.getElementById('email').textContent = profile.email;
+        } else {
+            alert('Profile not found!');
+            window.location.href = "profile-form.html";
+        }
 
-        <!-- Photos Modal -->
-        <div id="photosModal" class="modal">
-            <div class="modal-content">
-                <h2><i class="fas fa-images"></i> Your Photos</h2>
-                <div class="photo-grid" id="photoGrid">
-                    <!-- Photos will be loaded here dynamically -->
-                </div>
-                <button onclick="closePhotosModal()">Close</button>
-            </div>
-        </div>
-
-        <!-- Relatives Modal -->
-        <div id="relativesModal" class="modal">
-            <div class="modal-content">
-                <h2><i class="fas fa-user-friends"></i> Your Relatives</h2>
-                <div class="relatives-list" id="relativesList">
-                    <!-- Relatives will be loaded here dynamically -->
-                </div>
-                <button onclick="closeRelativesModal()">Close</button>
-            </div>
-        </div>
-
-        <!-- Messages Modal -->
-<div id="messagesModal" class="modal">
-    <div class="modal-content">
-        <h2><i class="fas fa-comments"></i> Messages</h2>
-        <div class="conversation-list" id="conversationList">
-            <!-- Conversations will be loaded here -->
-        </div>
-        <div class="chat-area">
-            <div class="message-history" id="messageHistory"></div>
-            <div class="message-input">
-                <input type="text" id="messageText" placeholder="Type your message...">
-                <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Send</button>
-            </div>
-        </div>
-        <button onclick="closeMessagesModal()">Close</button>
-    </div>
-</div>
-    </div>
-
-    <script src="profile-script.js"></script>
+        // Logout Function
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = "kabiraj login.html";
+        }
+    </script>
 </body>
 </html>
