@@ -1,0 +1,17 @@
+// Simulated user database
+if (!localStorage.getItem('users')) {
+    const users = [
+        { email: 'user1@example.com', password: '123' },
+        { email: 'user2@example.com', password: '123' },
+        { email: 'user3@example.com', password: '123' }
+    ];
+    localStorage.setItem('users', JSON.stringify(users));
+}
+
+// Initialize friends and requests if not exists
+if (!localStorage.getItem('friends')) {
+    localStorage.setItem('friends', JSON.stringify([]));
+}
+if (!localStorage.getItem('requests')) {
+    localStorage.setItem('requests', JSON.stringify([]));
+}
