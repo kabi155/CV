@@ -8,16 +8,19 @@
     <style>
         /* Enhanced Styles */
         :root {
-            --primary-color: #1877f2;
-            --secondary-color: #f0f2f5;
-            --text-color: #1c1e21;
+            --primary-color: #8A2BE2; /* Purple primary color */
+            --secondary-color: #4B0082; /* Darker purple */
+            --accent-color: #87CEEB; /* Sky blue */
+            --text-color: #FFFFFF;
+            --card-bg: rgba(255, 255, 255, 0.9);
         }
 
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
-            background-color: var(--secondary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--text-color);
+            min-height: 100vh;
         }
 
         .navbar {
@@ -25,14 +28,38 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 50px;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0 1px 4px rgba(0,0,0,0.1);
             height: 60px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .nav-left h1 {
             color: var(--primary-color);
             margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .search-bar {
+            flex: 0 1 500px;
+            margin: 0 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 2px solid var(--accent-color);
+            background-color: rgba(135, 206, 235, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(138, 43, 226, 0.3);
         }
 
         .nav-right button {
@@ -40,14 +67,15 @@
             color: white;
             border: none;
             padding: 8px 20px;
-            border-radius: 5px;
+            border-radius: 20px;
             cursor: pointer;
             margin-left: 15px;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
         }
 
         .nav-right button:hover {
-            background-color: #166fe5;
+            background-color: var(--secondary-color);
+            transform: translateY(-1px);
         }
 
         .profile-container {
@@ -58,11 +86,12 @@
 
         .cover-photo {
             height: 350px;
-            background-color: #ddd;
-            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
             position: relative;
             background-size: cover;
             background-position: center;
+            backdrop-filter: blur(5px);
         }
 
         .profile-header {
@@ -75,17 +104,23 @@
             width: 160px;
             height: 160px;
             border-radius: 50%;
-            border: 5px solid white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 5px solid var(--card-bg);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
         }
 
         .profile-header h1 {
             margin: 20px 0 10px;
             font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
         .bio {
-            color: #65676b;
+            color: rgba(255, 255, 255, 0.9);
             font-size: 1.1em;
             max-width: 600px;
             margin: 0 auto;
@@ -96,21 +131,23 @@
             justify-content: center;
             margin: 30px 0;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         .nav-button {
             padding: 12px 25px;
-            border-radius: 8px;
-            background-color: white;
+            border-radius: 30px;
+            background-color: var(--card-bg);
             border: none;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             font-weight: 600;
-            color: var(--text-color);
+            color: var(--primary-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .nav-button:hover {
-            background-color: var(--primary-color);
+            background-color: var(--accent-color);
             color: white;
             transform: translateY(-2px);
         }
@@ -123,42 +160,78 @@
         }
 
         .detail-card {
-            background: white;
+            background: var(--card-bg);
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+            color: var(--secondary-color);
         }
 
         .posts-feed {
-            background: white;
+            background: var(--card-bg);
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             margin-top: 30px;
+            color: var(--secondary-color);
         }
 
         .post {
             padding: 15px;
-            border-bottom: 1px solid #eee;
             margin-bottom: 15px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .post:hover {
+            transform: translateX(5px);
+        }
+
+        .post img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .post-meta {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 10px;
         }
 
         @media (max-width: 768px) {
             .navbar {
-                padding: 0 20px;
+                padding: 0 15px;
+                flex-wrap: wrap;
+                height: auto;
+                padding: 10px;
             }
-            
+
+            .search-bar {
+                flex: 1 1 100%;
+                order: 3;
+                margin: 10px 0;
+            }
+
+            .nav-left, .nav-right {
+                flex: 1 1 auto;
+            }
+
             .profile-photo {
                 width: 120px;
                 height: 120px;
             }
-            
+
             .profile-header h1 {
                 font-size: 2em;
             }
-            
-            .profile-nav {
-                flex-wrap: wrap;
+
+            .nav-button {
+                padding: 10px 20px;
+                font-size: 0.9em;
             }
         }
     </style>
@@ -168,6 +241,9 @@
     <nav class="navbar">
         <div class="nav-left">
             <h1>Social Profile</h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search posts, friends...">
         </div>
         <div class="nav-right">
             <button onclick="logout()">Logout</button>
@@ -205,7 +281,7 @@
             </div>
             <div class="detail-card">
                 <h3>Social Stats</h3>
-                <p><strong>Posts:</strong> 125</p>
+                <p><strong>Posts:</strong> <span id="post-count">0</span></p>
                 <p><strong>Following:</strong> 850</p>
                 <p><strong>Followers:</strong> 1.2K</p>
             </div>
@@ -214,12 +290,11 @@
         <!-- Posts Section -->
         <div class="posts-feed">
             <h2>Recent Activity</h2>
-            <div class="post">
-                <p>Welcome to your profile! Start sharing your updates.</p>
+            <div id="recent-activity">
+                <!-- Posts will be loaded here -->
             </div>
         </div>
     </div>
-    <div class="posts-feed" id="profile-posts-feed"></div>
 
     <script>
         // Load Profile Data
@@ -233,11 +308,33 @@
             document.getElementById('bio-text').textContent = profile.bio;
             document.getElementById('dob').textContent = profile.dob;
             document.getElementById('email').textContent = profile.email;
-            // Add additional profile fields as needed
         } else {
             alert('Profile not found!');
             window.location.href = "profile-form.html";
         }
+
+        // Load Recent Activity
+        function loadRecentActivity() {
+            const posts = JSON.parse(localStorage.getItem('posts')) || [];
+            const activityContainer = document.getElementById('recent-activity');
+            const postCount = document.getElementById('post-count');
+            
+            postCount.textContent = posts.length;
+            
+            activityContainer.innerHTML = posts.reverse().map(post => `
+                <div class="post">
+                    ${post.content ? `<p>${post.content}</p>` : ''}
+                    ${post.image ? `<img src="${post.image}" alt="Post image">` : ''}
+                    <div class="post-meta">
+                        ${new Date(post.timestamp).toLocaleDateString()} • 
+                        ${new Date(post.timestamp).toLocaleTimeString()}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initial load
+        loadRecentActivity();
 
         // Logout Function
         function logout() {
