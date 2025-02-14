@@ -1,85 +1,89 @@
-// Load initial data
-let currentUser = localStorage.getItem('currentUser');
-let users = JSON.parse(localStorage.getItem('users')) || [];
-let friends = JSON.parse(localStorage.getItem('friends')) || [];
-let requests = JSON.parse(localStorage.getItem('requests')) || [];
+// Friend Management System
+let currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-// Display friend requests
-function loadFriendRequests() {
-    const requestsList = document.getElementById('friend-requests-list');
-    requestsList.innerHTML = requests
-        .filter(req => req.to === currentUser)
-        .map(req => `
-            <div class="request-card">
-                <span>${req.from} wants to be your friend</span>
-                <div>
-                    <button onclick="acceptRequest('${req.from}')">Accept</button>
-                    <button onclick="declineRequest('${req.from}')">Decline</button>
-                </div>
-            </div>
-        `)
-        .join('');
-}
-
-// Display friends list
-function loadFriendsList() {
-    const friendsList = document.getElementById('friends-list');
-    friendsList.innerHTML = friends
-        .filter(f => f.user === currentUser)
-        .map(f => `
-            <div class="user-card">
-                <span>${f.friend}</span>
-            </div>
-        `)
-        .join('');
-}
-
-// Search for friends
-function searchFriends() {
-    const searchInput = document.getElementById('search-input').value.toLowerCase();
-    const searchResults = document.getElementById('search-results');
-    const results = users.filter(user => 
-        user.email.toLowerCase().includes(searchInput) && user.email !== currentUser
+function searchUsers() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const allUsers = JSON.parse(localStorage.getItem('users')) || [];
+    const friends = JSON.parse(localStorage.getItem('friends')) || { 
+        [currentUser.email]: [] 
+    };
+    
+    const results = allUsers.filter(user => 
+        (user.firstName.toLowerCase() + ' ' + user.lastName.toLowerCase()).includes(searchTerm) &&
+        user.email !== currentUser.email
     );
 
-    searchResults.innerHTML = results
-        .map(user => `
-            <div class="user-card">
-                <span>${user.email}</span>
-                <button onclick="sendRequest('${user.email}')">Add Friend</button>
+    displayResults(results, friends[currentUser.email]);
+}
+
+function displayResults(users, friendsList) {
+    const resultsContainer = document.getElementById('searchResults');
+    resultsContainer.innerHTML = users.map(user => `
+        <div class="user-card">
+            <div>
+                <h3>${user.firstName} ${user.lastName}</h3>
+                <p>${user.email}</p>
             </div>
-        `)
-        .join('');
+            ${!friendsList.includes(user.email) ? 
+                `<button onclick="sendRequest('${user.email}')">Add Friend</button>` : 
+                `<span>Already Friends</span>`}
+        </div>
+    `).join('');
 }
 
-// Send friend request
-function sendRequest(to) {
-    if (!requests.some(req => req.from === currentUser && req.to === to)) {
-        requests.push({ from: currentUser, to });
-        localStorage.setItem('requests', JSON.stringify(requests));
-        alert('Friend request sent!');
-    } else {
-        alert('Request already sent!');
-    }
+function sendRequest(targetEmail) {
+    const requests = JSON.parse(localStorage.getItem('friendRequests')) || {};
+    if (!requests[targetEmail]) requests[targetEmail] = [];
+    
+    requests[targetEmail].push({
+        from: currentUser.email,
+        name: `${currentUser.firstName} ${currentUser.lastName}`,
+        timestamp: new Date().toISOString()
+    });
+
+    localStorage.setItem('friendRequests', JSON.stringify(requests));
+    alert('Friend request sent!');
 }
 
-// Accept friend request
-function acceptRequest(from) {
-    friends.push({ user: currentUser, friend: from });
-    requests = requests.filter(req => !(req.from === from && req.to === currentUser));
+// Load friend requests on page load
+function loadRequests() {
+    const requests = JSON.parse(localStorage.getItem('friendRequests')) || {};
+    const userRequests = requests[currentUser.email] || [];
+    
+    document.getElementById('friendRequests').innerHTML = userRequests.map(req => `
+        <div class="request-card">
+            <h3>${req.name}</h3>
+            <p>${req.email}</p>
+            <button onclick="acceptRequest('${req.from}')">Accept</button>
+            <button onclick="declineRequest('${req.from}')">Decline</button>
+        </div>
+    `).join('');
+}
+
+function acceptRequest(fromEmail) {
+    // Add to friends list
+    const friends = JSON.parse(localStorage.getItem('friends')) || {};
+    if (!friends[currentUser.email]) friends[currentUser.email] = [];
+    friends[currentUser.email].push(fromEmail);
+    
+    // Remove from requests
+    const requests = JSON.parse(localStorage.getItem('friendRequests'));
+    requests[currentUser.email] = requests[currentUser.email].filter(req => req.from !== fromEmail);
+    
     localStorage.setItem('friends', JSON.stringify(friends));
-    localStorage.setItem('requests', JSON.stringify(requests));
-    loadFriendRequests();
-    loadFriendsList();
+    localStorage.setItem('friendRequests', JSON.stringify(requests));
+    loadRequests();
 }
 
-// Decline friend request
-function declineRequest(from) {
-    requests = requests.filter(req => !(req.from === from && req.to === currentUser));
-    localStorage.setItem('requests', JSON.stringify(requests));
-    loadFriendRequests();
+function declineRequest(fromEmail) {
+    const requests = JSON.parse(localStorage.getItem('friendRequests'));
+    requests[currentUser.email] = requests[currentUser.email].filter(req => req.from !== fromEmail);
+    localStorage.setItem('friendRequests', JSON.stringify(requests));
+    loadRequests();
 }
 
 // Initial load
-loadFriendRequests();
-loadFriendsList();
+window.onload = () => {
+    if (!currentUser) window.location.href = 'login.html';
+    loadRequests();
+};
