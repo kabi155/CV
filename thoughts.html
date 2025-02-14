@@ -71,4 +71,85 @@
         }
     </script>
 </body>
+    <!-- thoughts.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Share Your Thoughts</title>
+    <style>
+        .upload-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        #preview {
+            max-width: 200px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h2>Share Your Thought</h2>
+        <form id="uploadForm">
+            <input type="file" id="photoInput" accept="image/*" required>
+            <br>
+            <textarea id="thoughtInput" placeholder="Add your caption..." rows="4"></textarea>
+            <br>
+            <button type="submit">Share</button>
+        </form>
+        <img id="preview" src="#" alt="Image preview">
+    </div>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        const photoInput = document.getElementById('photoInput');
+        const thoughtInput = document.getElementById('thoughtInput');
+        const preview = document.getElementById('preview');
+
+        // Image preview
+        photoInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const file = photoInput.files[0];
+            const reader = new FileReader();
+            
+            reader.onloadend = function() {
+                const thought = {
+                    image: reader.result,
+                    caption: thoughtInput.value,
+                    date: new Date().toISOString()
+                };
+
+                // Save to localStorage
+                const existingThoughts = JSON.parse(localStorage.getItem('thoughts') || '[]');
+                existingThoughts.push(thought);
+                localStorage.setItem('thoughts', JSON.stringify(existingThoughts));
+
+                // Reset form
+                form.reset();
+                preview.src = '#';
+                alert('Thought shared successfully!');
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
 </html>
