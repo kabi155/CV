@@ -1,4 +1,22 @@
-// Bottom Navigation Functions
+// Load posts in profile view
+function loadProfilePosts() {
+    const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+    const postsFeed = document.getElementById('profile-posts-feed');
+    
+    postsFeed.innerHTML = posts.map(post => `
+        <div class="post">
+            ${post.content ? `<p>${post.content}</p>` : ''}
+            ${post.image ? `<img src="${post.image}" alt="Post image">` : ''}
+            <div class="post-meta">
+                <span>${new Date(post.timestamp).toLocaleDateString()}</span>
+                <span>${new Date(post.timestamp).toLocaleTimeString()}</span>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Call this when loading profile page
+loadProfilePosts();// Bottom Navigation Functions
 function showPhotosModal() {
     document.getElementById('photosModal').style.display = 'block';
     loadPhotos();
