@@ -3,64 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Profiles</title>
-    <link rel="stylesheet" href="friends.css">
+    <title>Friends & Relatives</title>
+    <link rel="stylesheet" href="styles/friends.css">
 </head>
 <body>
-    <div class="search-container">
-        <h1>Search Profiles</h1>
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search by name...">
-            <button onclick="searchProfiles()">Search</button>
+    <div class="friends-container">
+        <h1>Friends & Relatives</h1>
+        <div class="search-section">
+            <input type="text" id="search-input" placeholder="Search by name...">
+            <button onclick="searchFriends()">Search</button>
         </div>
-        <div class="results-container" id="resultsContainer">
-            <!-- Search results will appear here -->
+        <div class="search-results" id="search-results"></div>
+        <div class="friend-requests">
+            <h2>Friend Requests</h2>
+            <div id="friend-requests-list"></div>
+        </div>
+        <div class="friends-list">
+            <h2>Your Friends</h2>
+            <div id="friends-list"></div>
         </div>
     </div>
 
-    <script>
-        // Function to search profiles by name
-        function searchProfiles() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            const resultsContainer = document.getElementById('resultsContainer');
-
-            // Clear previous results
-            resultsContainer.innerHTML = '';
-
-            if (!searchTerm) {
-                resultsContainer.innerHTML = '<p>Please enter a name to search.</p>';
-                return;
-            }
-
-            // Filter users by first name or last name
-            const results = users.filter(user => 
-                user.firstName.toLowerCase().includes(searchTerm) ||
-                user.lastName.toLowerCase().includes(searchTerm)
-            );
-
-            if (results.length === 0) {
-                resultsContainer.innerHTML = '<p>No profiles found.</p>';
-                return;
-            }
-
-            // Display results
-            resultsContainer.innerHTML = results.map(user => `
-                <div class="user-card">
-                    <div>
-                        <h3>${user.firstName} ${user.lastName}</h3>
-                        <p>${user.email}</p>
-                    </div>
-                    <button onclick="viewProfile('${user.email}')">View Profile</button>
-                </div>
-            `).join('');
-        }
-
-        // Function to view a profile (you can expand this later)
-        function viewProfile(email) {
-            alert(`Viewing profile of user with email: ${email}`);
-            // You can redirect to a profile page or show a modal with more details
-        }
-    </script>
+    <script src="scripts/friends.js"></script>
 </body>
 </html>
