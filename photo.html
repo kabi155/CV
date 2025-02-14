@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Uploaded Photos Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .gallery img {
+      max-width: 200px;
+      max-height: 200px;
+      object-fit: cover;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .no-photos {
+      text-align: center;
+      color: #777;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Uploaded Photos</h1>
+  <div class="gallery" id="gallery"></div>
+  <div class="no-photos" id="noPhotos" style="display: none;">No photos uploaded yet.</div>
+  
+  <script>
+    // Retrieve the uploaded photos array from localStorage.
+    // It is expected that the thoughts.html page stored photos as a JSON string.
+    const photosJSON = localStorage.getItem('uploadedPhotos');
+    const galleryDiv = document.getElementById('gallery');
+    const noPhotosDiv = document.getElementById('noPhotos');
+    
+    if (photosJSON) {
+      try {
+        const uploadedPhotos = JSON.parse(photosJSON);
+        if (Array.isArray(uploadedPhotos) && uploadedPhotos.length > 0) {
+          // For each photo (assumed to be a base64 encoded string), create an image element.
+          uploadedPhotos.forEach(photoData => {
+            const img = document.createElement('img');
+            img.src = photoData;
+            galleryDiv.appendChild(img);
+          });
+        } else {
+          noPhotosDiv.style.display = 'block';
+        }
+      } catch (e) {
+        console.error('Error parsing uploaded photos:', e);
+        noPhotosDiv.style.display = 'block';
+      }
+    } else {
+      noPhotosDiv.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
