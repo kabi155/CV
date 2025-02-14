@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="styles/signup.css">
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <h1>Welcome Back!</h1>
+    <div class="signup-container">
+        <div class="signup-box">
+            <h1>Login</h1>
             <form id="login-form">
                 <div class="form-group">
                     <input type="email" id="email" placeholder="Email" required>
@@ -17,33 +17,28 @@
                 <div class="form-group">
                     <input type="password" id="password" placeholder="Password" required>
                 </div>
-                <button type="submit" class="login-button">Login</button>
+                <button type="submit" class="signup-button">Login</button>
             </form>
-            <p class="signup-link">Don't have an account? <a href="kabiraj form.html">Sign Up</a></p>
+            <p class="login-link">Don't have an account? <a href="kabiraj form.html">Sign Up</a></p>
         </div>
     </div>
 
     <script>
         document.getElementById('login-form').addEventListener('submit', (e) => {
             e.preventDefault();
+
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            // Retrieve users and profiles from localStorage
             const users = JSON.parse(localStorage.getItem('users')) || [];
-            const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
-
-            // Validate user
             const user = users.find(u => u.email === email && u.password === password);
-            if (!user) {
-                alert('Invalid email or password!');
-                return;
-            }
 
-            // Check if profile exists
-            const profile = profiles.find(p => p.email === email);
-            localStorage.setItem('currentUser', email);
-            window.location.href = profile ? "profile-display.html" : "profile-form.html";
+            if (user) {
+                localStorage.setItem('currentUser', email);
+                window.location.href = "profile-display.html";
+            } else {
+                alert('Invalid email or password!');
+            }
         });
     </script>
 </body>
