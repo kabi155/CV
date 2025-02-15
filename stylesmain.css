@@ -62,14 +62,14 @@ h2 {
 .slogan {
     font-size: 1.5em;
     color: #fff;
-    background-color: #FFCC00;
+    background-color: #87CEEB;
     padding: 15px;
     border-radius: 8px;
     margin-top: 20px;
     font-weight: bold;
 }
 
-.enter-btn, .signup-btn, .login-btn, .photo-btn, .back-btn {
+.enter-btn, .socialmedia-btn, .photo-btn, .back-btn {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 1.5em;
@@ -82,16 +82,16 @@ h2 {
     transition: background 0.3s ease;
 }
 
-.enter-btn:hover, .signup-btn:hover, .back-btn:hover {
+.socialmedia-btn:hover, .back-btn:hover {
     background: #ffcc00;
 }
 
-.login-btn {
+.socialmedia-btn {
     background: #4285f4;
     color: white;
 }
 
-.login-btn:hover {
+.socialmedia-btn:hover {
     background: #357abd;
 }
 
