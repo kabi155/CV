@@ -3,139 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Sign Up - Our Ancestors</title>
     <link rel="stylesheet" href="signup.css">
-</head><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="signup-container">
-        <div class="signup-box">
-            <h1>Join Us</h1>
-            <form id="signup-form">
-                <div class="form-group">
-                    <input type="text" id="firstName" placeholder="First Name" required>
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <h1><i class="fas fa-users"></i> Create Account</h1>
+                <p>Join our community to connect with your roots</p>
+            </div>
+            
+            <form id="signupForm" action="signup.php" method="POST">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                        <i class="fas fa-user icon"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                        <i class="fas fa-user icon"></i>
+                    </div>
                 </div>
+
                 <div class="form-group">
-                    <input type="text" id="lastName" placeholder="Last Name" required>
+                    <input type="email" id="email" name="email" placeholder="Email Address" required>
+                    <i class="fas fa-envelope icon"></i>
                 </div>
+
                 <div class="form-group">
-                    <input type="email" id="email" placeholder="Email" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <i class="fas fa-lock icon"></i>
                 </div>
-                <div class="form-group">
-                    <input type="password" id="password" placeholder="Password" required>
-                </div>
-                <button type="submit" class="signup-button">Sign Up</button>
+
+                <button type="submit" class="auth-button">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
             </form>
-            <p class="login-link">Already have an account? <a href="kabiraj login.html">Login</a></p>
+
+            <div class="auth-links">
+                <a href="kabiraj login.html"><i class="fas fa-sign-in-alt"></i> Existing User? Login</a>
+                <a href="reset-password.html"><i class="fas fa-key"></i> Forgot Password?</a>
+            </div>
         </div>
     </div>
-
-    <script>
-        document.getElementById('signup-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            // Get form values
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            // Check if user already exists
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            if (users.some(user => user.email === email)) {
-                alert('User already exists!');
-                return;
-            }
-
-            // Create user object
-            const user = {
-                firstName,
-                lastName,
-                email,
-                password
-            };
-
-            // Save user to localStorage
-            users.push(user);
-            localStorage.setItem('users', JSON.stringify(users));
-
-            alert('Signup successful!');
-            window.location.href = "kabiraj login.html";
-        });
-    </script>
-</body>
-</html>
-<body>
-    <div class="signup-container">
-        <div class="signup-box">
-            <h1>Join Us</h1>
-            <form id="signup-form">
-                <div class="form-group">
-                    <input type="email" id="email" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" id="password" placeholder="Password" required>
-                </div>
-                <button type="submit" class="signup-button">Sign Up</button>
-            </form>
-            <p class="login-link">Already have an account? <a href="kabiraj login.html">Login</a></p>
-        </div>
-    </div>
-    <!-- Add name fields to your signup form -->
-<form id="signupForm">
-    <input type="text" id="firstName" placeholder="First Name" required>
-    <input type="text" id="lastName" placeholder="Last Name" required>
-    <input type="email" id="email" placeholder="Email" required>
-    <input type="password" id="password" placeholder="Password" required>
-    <button type="submit">Sign Up</button>
-</form>
-
-<script>
-document.getElementById('signupForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const user = {
-        firstName: document.getElementById('firstName').value,
-        lastName: document.getElementById('lastName').value,
-        email: document.getElementById('email').value,
-        password: document.getElementById('password').value
-    };
-
-    // Save to localStorage
-    const users = JSON.parse(localStorage.getItem('users') || [];
-    users.push(user);
-    localStorage.setItem('users', JSON.stringify(users));
-    
-    alert('Signup successful!');
-    window.location.href = 'kabiraj login.html';
-});
-</script>
-
-    <script>
-        document.getElementById('signup-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            // Check if user already exists
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            if (users.some(user => user.email === email)) {
-                alert('User already exists!');
-                return;
-            }
-
-            // Save user
-            users.push({ email, password });
-            localStorage.setItem('users', JSON.stringify(users));
-            alert('Signup successful!');
-            window.location.href = "kabiraj login.html";
-        });
-    </script>
 </body>
 </html>
