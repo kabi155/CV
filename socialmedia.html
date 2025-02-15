@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Ancestors - Social Media Interface</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff8c00, #ffd700);
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .main-heading {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .action-button {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            color: #ff8c00;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-decoration: none;
+        }
+
+        .action-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .welcome-note {
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .contact-section {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            color: white;
+        }
+
+        .forgot-password {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .contact-button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            border: none;
+            margin-top: 20px;
+        }
+
+        .creator-info {
+            margin: 20px 0;
+            color: white;
+            font-size: 1.1em;
+        }
+
+        input[type="email"] {
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            margin: 10px;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="main-heading">Our Ancestors<br>(हाम्रा पुर्खाहरू)</h1>
+            <div class="creator-info">Created by Kabi Raj Bhatt</div>
+        </header>
+
+        <div class="welcome-note">
+            <h2>Welcome to Our Ancestors Community!</h2>
+            <p>Connect with your roots, share ancestral stories, and preserve cultural heritage through generations.</p>
+        </div>
+
+        <div class="button-container">
+            <a href="kabiraj login.html" class="action-button">Login</a>
+            <a href="kabiraj form.html" class="action-button">Sign Up</a>
+        </div>
+
+        <div class="forgot-password">
+            <h3>Forgot Password?</h3>
+            <form action="reset_password.php" method="POST">
+                <input type="email" name="email" placeholder="Enter your registered email" required>
+                <button type="submit" class="contact-button">Send Reset Link</button>
+            </form>
+        </div>
+
+        <div class="contact-section">
+            <button class="contact-button" onclick="toggleContact()">Contact Us</button>
+            <div id="contact-info" style="display: none; margin-top: 15px; color: white;">
+                <p>Email: bhattkabiraj255@gmail.com</p>
+                <p>WhatsApp: +977 9847546823</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2025 Our Ancestors. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleContact() {
+            const contactInfo = document.getElementById('contact-info');
+            contactInfo.style.display = contactInfo.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
