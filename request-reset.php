@@ -1,6 +1,6 @@
 <?php
-require '../includes/db.php';
-require '../includes/mailer.php';
+require '../db.php';
+require '../mailer.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
@@ -13,19 +13,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user) {
         // Generate token
         $token = bin2hex(random_bytes(50));
-        $expires = date("Y-m-d H:i:s", time() + 3600); // 1 hour expiration
+        $expires = date("Y-m-d H:i:s", time() + 300); // 1 hour expiration
 
         // Store token
         $stmt = $pdo->prepare("INSERT INTO password_resets (email, token, expires_at) VALUES (?, ?, ?)");
         $stmt->execute([$email, $token, $expires]);
 
         // Send reset email
-        $resetLink = "https://yourdomain.com/auth/reset-password.html?token=$token";
+        $resetLink = "https://kabirajbhatt.com.np/kabiraj signup/reset-password.html?token=$token";
         sendPasswordResetEmail($email, $resetLink);
     }
 
     // Always show success message
-    header("Location: ../auth/login.html?reset_sent=1");
+    header("Location: ../kabiraj login.html?reset_sent=1");
     exit();
 }
 
