@@ -85,21 +85,3 @@ h2 {
 .back-btn:hover {
     background: #ffcc00;
 }
-
-.socialmedia-btn {
-    background: #4285f4;
-    color: white;
-}
-
-.socialmedia-btn:hover {
-    background: #357abd;
-}
-
-.photo-btn {
-    background: green;
-    color: white;
-}
-
-.photo-btn:hover {
-    background: #4CAF50;
-}
