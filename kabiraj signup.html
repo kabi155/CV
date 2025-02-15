@@ -8,45 +8,89 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="auth-container">
-        <div class="auth-box">
-            <div class="auth-header">
-                <h1><i class="fas fa-users"></i> Create Account</h1>
-                <p>Join our community to connect with your roots</p>
-            </div>
-            
-            <form id="signupForm" action="signup.php" method="POST">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
-                        <i class="fas fa-user icon"></i>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
-                        <i class="fas fa-user icon"></i>
-                    </div>
+    <div class="signup-container">
+        <div class="signup-box">
+            <h1>Create Account</h1>
+            <form id="signupForm">
+                <!-- Personal Information -->
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required>
+                    <i class="fas fa-user icon"></i>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required>
+                    <i class="fas fa-user icon"></i>
                 </div>
 
+                <!-- Email and Password -->
                 <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Email Address" required>
+                    <input type="email" id="email" placeholder="Email Address" required>
                     <i class="fas fa-envelope icon"></i>
                 </div>
-
                 <div class="form-group">
-                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <input type="password" id="password" placeholder="Password" required>
                     <i class="fas fa-lock icon"></i>
                 </div>
 
-                <button type="submit" class="auth-button">
-                    <i class="fas fa-user-plus"></i> Create Account
+                <!-- Submit Button -->
+                <button type="submit" class="signup-button">
+                    <i class="fas fa-user-plus"></i> Sign Up
                 </button>
             </form>
 
-            <div class="auth-links">
-                <a href="kabiraj login.html"><i class="fas fa-sign-in-alt"></i> Existing User? Login</a>
-                <a href="reset-password.html"><i class="fas fa-key"></i> Forgot Password?</a>
-            </div>
+            <!-- Additional Links -->
+            <p class="login-link">
+                Already have an account? <a href="kabiraj login.html">Login</a>
+            </p>
+            <p class="login-link">
+                Forgot password? <a href="reset-password.html">Reset Password</a>
+            </p>
         </div>
     </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Show loading state
+            const button = this.querySelector('.signup-button');
+            button.classList.add('loading');
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing Up...';
+
+            // Simulate form submission delay
+            setTimeout(() => {
+                // Get form values
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                // Check if user already exists
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                if (users.some(user => user.email === email)) {
+                    alert('User already exists!');
+                    button.classList.remove('loading');
+                    button.innerHTML = '<i class="fas fa-user-plus"></i> Sign Up';
+                    return;
+                }
+
+                // Create user object
+                const user = {
+                    firstName,
+                    lastName,
+                    email,
+                    password
+                };
+
+                // Save user to localStorage
+                users.push(user);
+                localStorage.setItem('users', JSON.stringify(users));
+
+                // Redirect to login page
+                alert('Signup successful!');
+                window.location.href = "login.html";
+            }, 2000); // Simulate 2-second delay
+        });
+    </script>
 </body>
 </html>
