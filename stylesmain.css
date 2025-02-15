@@ -38,13 +38,13 @@ body {
 h1 {
     font-size: 3em;
     margin: 0;
-    color: gold;
+    color: skyblue;
 }
 
 h2 {
     font-size: 2em;
     margin: 10px 0;
-    color: gold;
+    color: yellow;
 }
 
 #age {
