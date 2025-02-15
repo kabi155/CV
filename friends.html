@@ -3,27 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Friends & Relatives</title>
-    <link rel="stylesheet" href="styles/friends.css">
+    <title>Find Friends</title>
+    <link rel="stylesheet" href="friends.css">
 </head>
 <body>
+    <nav class="navbar">
+        <a href="profile.html">My Profile</a>
+        <a href="photo.html">Photos</a>
+        <button onclick="logout()">Logout</button>
+    </nav>
+
     <div class="friends-container">
-        <h1>Friends & Relatives</h1>
         <div class="search-section">
-            <input type="text" id="search-input" placeholder="Search by name...">
-            <button onclick="searchFriends()">Search</button>
+            <input type="text" id="search-input" placeholder="Search by name or email...">
+            <button onclick="searchUsers()">Search</button>
         </div>
-        <div class="search-results" id="search-results"></div>
+
+        <div id="search-results" class="search-results"></div>
+        
         <div class="friend-requests">
-            <h2>Friend Requests</h2>
-            <div id="friend-requests-list"></div>
+            <h2>Pending Requests</h2>
+            <div id="requests-list"></div>
         </div>
+
         <div class="friends-list">
             <h2>Your Friends</h2>
-            <div id="friends-list"></div>
+            <div id="friends-container"></div>
         </div>
     </div>
 
-    <script src="scripts/friends.js"></script>
+    <script src="auth.js"></script>
+    <script src="friends.js"></script>
 </body>
 </html>
