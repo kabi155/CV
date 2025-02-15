@@ -82,7 +82,7 @@ h2 {
     transition: background 0.3s ease;
 }
 
-.socialmedia-btn:hover, .back-btn:hover {
+.back-btn:hover {
     background: #ffcc00;
 }
 
