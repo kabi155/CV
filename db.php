@@ -1,23 +1,19 @@
 <?php
-require 'config.php';
+$host = 'localhost';
+$db   = 'your_database';
+$user = 'your_user';
+$pass = 'your_password';
+$charset = 'utf8mb4';
 
-class Database {
-    private $conn;
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
 
-    public function __construct() {
-        try {
-            $this->conn = new PDO(
-                "mysql:host=".DB_HOST.";dbname=".DB_NAME,
-                DB_USER,
-                DB_PASS
-            );
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch(PDOException $e) {
-            die("Connection failed: " . $e->getMessage());
-        }
-    }
-
-    public function getConnection() {
-        return $this->conn;
-    }
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+    throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
