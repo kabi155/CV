@@ -1,44 +1,140 @@
-.container {
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --background-color: #ffffff;
+    --text-color: #333;
+    --success-color: #27ae60;
+}
+
+.friends-container {
     max-width: 800px;
-    margin: 20px auto;
+    margin: 2rem auto;
     padding: 20px;
 }
 
+.search-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.search-header h1 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
 .search-box {
-    margin-bottom: 30px;
     display: flex;
     gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-input[type="text"] {
+#searchInput {
     flex: 1;
-    padding: 10px;
-    border: 2px solid #6a1b9a;
-    border-radius: 5px;
+    padding: 12px 20px;
+    border: 2px solid #ddd;
+    border-radius: 30px;
+    font-size: 16px;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #6a1b9a;
+.search-btn {
+    padding: 12px 25px;
+    background: var(--secondary-color);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-.user-card {
-    background: #f5f5f5;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
+.search-btn:hover {
+    background: #2980b9;
+}
+
+.friends-list {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.friend-card {
+    background: var(--background-color);
+    padding: 1.5rem;
+    border-radius: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
 }
 
-.request-card {
-    background: #e8f5e9;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
+.friend-card:hover {
+    transform: translateY(-3px);
+}
+
+.friend-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.avatar {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+}
+
+.details h3 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.email {
+    color: #666;
+    margin: 0.3rem 0;
+}
+
+.address {
+    color: #888;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.connect-btn {
+    background: var(--success-color);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.3s ease;
+}
+
+.connect-btn:hover {
+    background: #219a52;
+}
+
+@media (max-width: 768px) {
+    .friends-container {
+        padding: 10px;
+    }
+    
+    .friend-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .search-box {
+        flex-direction: column;
+    }
+    
+    .search-btn {
+        width: 100%;
+    }
 }
