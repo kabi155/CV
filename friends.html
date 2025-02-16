@@ -3,86 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Friends - Our Ancestors</title>
+    <title>Find Friends</title>
     <link rel="stylesheet" href="friends.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="friends-container">
         <div class="search-header">
-            <h1><i class="fas fa-user-friends"></i> Find Ancestors</h1>
+            <h1>Find Friends</h1>
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search by name, email, or location...">
-                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <input type="text" id="searchInput" placeholder="Search by name or email...">
+                <button class="search-btn">Search</button>
             </div>
         </div>
 
         <div class="friends-list" id="friendsList">
-            <!-- Dynamic content will be loaded here -->
+            <!-- Friend cards will be dynamically inserted here -->
         </div>
     </div>
 
     <script>
-        // Sample user data structure
-        const allUsers = JSON.parse(localStorage.getItem('users')) || [];
+        // Load current user and all users
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const allUsers = JSON.parse(localStorage.getItem('users')) || [];
 
+        // Filter out current user
+        const otherUsers = allUsers.filter(user => user.email !== currentUser.email);
+
+        // Display all users initially
+        displayUsers(otherUsers);
+
+        // Search functionality
         document.getElementById('searchInput').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const filteredUsers = allUsers.filter(user => 
-                user.email !== currentUser.email && (
-                    user.firstName.toLowerCase().includes(searchTerm) ||
-                    user.lastName.toLowerCase().includes(searchTerm) ||
-                    user.email.toLowerCase().includes(searchTerm) ||
-                    (user.address && user.address.toLowerCase().includes(searchTerm))
-                );
-                
+            const searchTerm = e.target.value.toLowerCase().trim();
+            const filteredUsers = otherUsers.filter(user => 
+                user.firstName.toLowerCase().includes(searchTerm) ||
+                user.lastName.toLowerCase().includes(searchTerm) ||
+                user.email.toLowerCase().includes(searchTerm)
+            );
             displayUsers(filteredUsers);
         });
 
+        // Display users in the list
         function displayUsers(users) {
             const friendsList = document.getElementById('friendsList');
             friendsList.innerHTML = '';
 
             users.forEach(user => {
+                const isConnected = currentUser.connections.includes(user.email);
+
                 const friendCard = document.createElement('div');
                 friendCard.className = 'friend-card';
                 friendCard.innerHTML = `
                     <div class="friend-info">
-                        <div class="avatar"><i class="fas fa-user-circle"></i></div>
+                        <div class="avatar">${user.firstName.charAt(0)}${user.lastName.charAt(0)}</div>
                         <div class="details">
                             <h3>${user.firstName} ${user.lastName}</h3>
                             <p class="email">${user.email}</p>
-                            ${user.address ? `<p class="address"><i class="fas fa-map-marker-alt"></i> ${user.address}</p>` : ''}
                         </div>
                     </div>
-                    <button class="connect-btn" onclick="sendConnectionRequest('${user.email}')">
-                        <i class="fas fa-user-plus"></i> Connect
+                    <button class="connect-btn ${isConnected ? 'connected' : ''}" 
+                            onclick="handleConnection('${user.email}')">
+                        ${isConnected ? 'Connected' : 'Connect'}
                     </button>
                 `;
                 friendsList.appendChild(friendCard);
             });
         }
 
-        function sendConnectionRequest(targetEmail) {
+        // Handle connection requests
+        function handleConnection(targetEmail) {
             const users = JSON.parse(localStorage.getItem('users'));
-            const currentUserIndex = users.findIndex(u => u.email === currentUser.email);
-            
-            if (!users[currentUserIndex].connections) {
-                users[currentUserIndex].connections = [];
-            }
-            
-            if (!users[currentUserIndex].connections.includes(targetEmail)) {
-                users[currentUserIndex].connections.push(targetEmail);
-                localStorage.setItem('users', JSON.stringify(users));
-                alert('Connection request sent!');
-            } else {
-                alert('You're already connected!');
-            }
-        }
+            const updatedUsers = users.map(user => {
+                if (user.email === currentUser.email) {
+                    if (!user.connections.includes(targetEmail)) {
+                        user.connections.push(targetEmail); // Add connection
+                        alert(`Connected with ${targetEmail}`);
+                    } else {
+                        user.connections = user.connections.filter(email => email !== targetEmail); // Remove connection
+                        alert(`Disconnected from ${targetEmail}`);
+                    }
+                }
+                return user;
+            });
 
-        // Initial display of all users except current user
-        displayUsers(allUsers.filter(user => user.email !== currentUser.email));
+            // Update localStorage
+            localStorage.setItem('users', JSON.stringify(updatedUsers));
+
+            // Update current user in localStorage
+            const updatedCurrentUser = updatedUsers.find(user => user.email === currentUser.email);
+            localStorage.setItem('currentUser', JSON.stringify(updatedCurrentUser));
+
+            // Refresh the display
+            displayUsers(otherUsers);
+        }
     </script>
 </body>
 </html>
