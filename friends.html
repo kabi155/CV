@@ -3,36 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Friends</title>
-    <link rel="stylesheet" href="friends.css">
+    <title>Find Friends - Our Ancestors</title>
+    <link rel="stylesheet" href="css/friends.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <a href="profile.html">My Profile</a>
-        <a href="photo.html">Photos</a>
-        <button onclick="logout()">Logout</button>
-    </nav>
-
     <div class="friends-container">
-        <div class="search-section">
-            <input type="text" id="search-input" placeholder="Search by name or email...">
-            <button onclick="searchUsers()">Search</button>
+        <div class="search-header">
+            <h1><i class="fas fa-user-friends"></i> Find Ancestors</h1>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search by name, email, or location...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
         </div>
 
-        <div id="search-results" class="search-results"></div>
-        
-        <div class="friend-requests">
-            <h2>Pending Requests</h2>
-            <div id="requests-list"></div>
-        </div>
-
-        <div class="friends-list">
-            <h2>Your Friends</h2>
-            <div id="friends-container"></div>
+        <div class="friends-list" id="friendsList">
+            <!-- Dynamic content will be loaded here -->
         </div>
     </div>
 
-    <script src="auth.js"></script>
-    <script src="friends.js"></script>
+    <script>
+        // Sample user data structure
+        const allUsers = JSON.parse(localStorage.getItem('users')) || [];
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredUsers = allUsers.filter(user => 
+                user.email !== currentUser.email && (
+                    user.firstName.toLowerCase().includes(searchTerm) ||
+                    user.lastName.toLowerCase().includes(searchTerm) ||
+                    user.email.toLowerCase().includes(searchTerm) ||
+                    (user.address && user.address.toLowerCase().includes(searchTerm))
+                );
+                
+            displayUsers(filteredUsers);
+        });
+
+        function displayUsers(users) {
+            const friendsList = document.getElementById('friendsList');
+            friendsList.innerHTML = '';
+
+            users.forEach(user => {
+                const friendCard = document.createElement('div');
+                friendCard.className = 'friend-card';
+                friendCard.innerHTML = `
+                    <div class="friend-info">
+                        <div class="avatar"><i class="fas fa-user-circle"></i></div>
+                        <div class="details">
+                            <h3>${user.firstName} ${user.lastName}</h3>
+                            <p class="email">${user.email}</p>
+                            ${user.address ? `<p class="address"><i class="fas fa-map-marker-alt"></i> ${user.address}</p>` : ''}
+                        </div>
+                    </div>
+                    <button class="connect-btn" onclick="sendConnectionRequest('${user.email}')">
+                        <i class="fas fa-user-plus"></i> Connect
+                    </button>
+                `;
+                friendsList.appendChild(friendCard);
+            });
+        }
+
+        function sendConnectionRequest(targetEmail) {
+            const users = JSON.parse(localStorage.getItem('users'));
+            const currentUserIndex = users.findIndex(u => u.email === currentUser.email);
+            
+            if (!users[currentUserIndex].connections) {
+                users[currentUserIndex].connections = [];
+            }
+            
+            if (!users[currentUserIndex].connections.includes(targetEmail)) {
+                users[currentUserIndex].connections.push(targetEmail);
+                localStorage.setItem('users', JSON.stringify(users));
+                alert('Connection request sent!');
+            } else {
+                alert('You're already connected!');
+            }
+        }
+
+        // Initial display of all users except current user
+        displayUsers(allUsers.filter(user => user.email !== currentUser.email));
+    </script>
 </body>
 </html>
